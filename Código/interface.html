@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" type="text/css" href="InterfaceStyle.css" />
+  </head>
+  <body>
+    <div id="userDisplay">
+      <span>User: </span><span id="displayUsername"></span>
+    </div>
+    <div id="taskContainer">
+      <div
+        id="todo"
+        class="taskSection"
+        ondrop="drop(event)"
+        ondragover="allowDrop(event)"
+      >
+        <h2>To Do</h2>
+        <div class="task" draggable="true" ondragstart="drag(event)">
+          Task 1
+        </div>
+        <div class="task" draggable="true" ondragstart="drag(event)">
+          Task 2
+        </div>
+      </div>
+
+      <div
+        id="doing"
+        class="taskSection"
+        ondrop="drop(event)"
+        ondragover="allowDrop(event)"
+      >
+        <h2>Doing</h2>
+        <!-- Tarefas Doing aqui -->
+      </div>
+
+      <div
+        id="done"
+        class="taskSection"
+        ondrop="drop(event)"
+        ondragover="allowDrop(event)"
+      >
+        <h2>Done</h2>
+        <!-- Tarefas Done aqui -->
+      </div>
+    </div>
+    
+    <button id="addTaskButton" onclick="openAddTaskModal()">
+      Adicionar Tarefa
+    </button>
+
+    <div id="addTaskModal" class="modal">
+      <div>
+        <h2>Adicionar Nova Tarefa</h2>
+        <form id="taskForm">
+          <label for="taskTitle">Título:</label>
+          <input type="text" id="taskTitle" required />
+          <label for="taskDescription">Descrição:</label>
+          <textarea id="taskDescription" required></textarea>
+          <button type="submit">Adicionar Tarefa</button>
+        </form>
+      </div>
+    </div>
+    <script src="app.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.14.0/Sortable.min.js"></script>
+  </body>
+</html>
