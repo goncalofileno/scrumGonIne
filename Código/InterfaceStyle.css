@@ -1,0 +1,88 @@
+body {
+    font-family: 'Sans-serif';
+    background-color: #e6f7ff; /* Tom de azul claro */
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+  }
+
+  #taskContainer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: flex-start;
+    width: 100%;
+    max-width: 1000px;
+  }
+  
+  .taskSection {
+    flex: 1; /* Faz com que cada seção ocupe uma parte igual do espaço disponível */
+    background-color: #99c2ff; /* Tom de azul médio */
+    padding: 20px;
+    margin: 10px;
+    margin-top: 40px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  h2 {
+    color: #003366; /* Azul escuro */
+  }
+  
+  .task {
+    margin: 5px 0;
+    padding: 8px;
+    background-color: #ffffff;
+    border-radius: 5px;
+    cursor: pointer;
+    max-width: 250px; /* Define uma largura máxima para as tarefas */
+  }
+  
+  .task:hover {
+    background-color: #f0f0f0;
+  }
+  
+  .taskSection:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  
+  #userDisplay {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+  }
+
+  .modal {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 30px;
+    background-color: #99c2ff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    z-index: 1; /* Certifique-se de que a modal está acima de outros elementos */
+  }
+  
+  .modal-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 0; /* Coloque o overlay abaixo da modal */
+  }
+  
+
+  #addTaskButton {
+    position:absolute;
+    bottom: 20px;
+    left: 20px;
+  }
+  
