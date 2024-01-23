@@ -71,7 +71,7 @@ document
     var todoSection = document.getElementById('todoSection');
     var newTask = document.createElement('div');
     newTask.textContent = taskTitle;
-    todoSection.appendChild(newTask);
+    todoSection.insertAdjacentHTML('beforeend', '<div class="task" draggable="true" ondragstart="drag(event)>' + taskTitle + '</div>');
 
     // Clear the input fields
     document.getElementById('taskTitle').value = '';
