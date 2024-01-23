@@ -5,16 +5,18 @@ window.onload = function () {
   }
 };
 
-document
-  .getElementById("loginForm")
-  .addEventListener("submit", function (event) {
-    event.preventDefault();
+document.getElementById('loginForm').onsubmit = function(event) {
+  event.preventDefault();
+  
+  var username = document.getElementById('username').value;
+  if (!username.trim()) {
+      alert('O campo de username não pode ser vazio ou conter apenas espaços!');
+      return false;
+  }
 
-    var user = document.getElementById("username").value;
-    localStorage.setItem("username", user);
-
-    window.location.href = "interface.html";
-  });
+  localStorage.setItem("username", username);
+  window.location.href = "interface.html";
+};
 
   function allowDrop(event) {
     event.preventDefault();
