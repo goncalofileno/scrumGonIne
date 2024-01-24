@@ -1,18 +1,27 @@
 body {
-    background-image: url('fundo3.jpg');
+    background-image: url('exp1.jpg');
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: cover;
     font: Sans-serif;
+    overflow-x: hidden; /* Esconde o conteúdo que se estende além das bordas horizontais */
+    width: 100%; /* Define a largura para 100% */
+    box-sizing: border-box; /* Inclui padding e borda na largura total */
+}
+#logo {
+    width: 25%;
+    display: block;
+    margin: auto;
+    filter: brightness(70%);
 }
 .container {
     width: 300px;
     padding: 16px;
-    background-color: rgba(255, 255, 255, 0.7);
+    background-color: rgba(255, 255, 255, 0.3);
     margin: 0 auto;
-    margin-top: 50px;
+    margin-top: 20px;
     border-radius: 4px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     font-size: medium;
     font-family: sans-serif; 
 }
@@ -25,7 +34,7 @@ input[type=text], input[type=password] {
     box-sizing: border-box;
 }
 button {
-    background-color: #0092a8;
+    background-color: #205d88;
     color: white;
     padding: 14px 20px;
     margin: 8px 0;
@@ -63,22 +72,34 @@ h2 {
     margin-top: 0;
 }
 footer {
-    background-color: rgba(51, 51, 51, 0.8);
+    background-color: rgba(168, 146, 124, 0.3);
     color: #fff; /* Cor do texto branca para contraste */
     padding: 20px; /* Reduz o espaçamento interno para 5px */
+    padding-top: 5px;;
     display: flex; /* Adiciona flexbox ao rodapé */
-    justify-content: center; /* Espaça os elementos igualmente */
+    justify-content: flex-start; /* Espaça os elementos igualmente */
     position: absolute; /* Posiciona o rodapé absolutamente em relação ao elemento pai */
     bottom: 0; /* Coloca o rodapé no fundo */
     width: 100%; /* Faz o rodapé ocupar toda a largura */
     max-height: 60px; /* Define a altura máxima do rodapé */
-    font-size: 12px; /* Define o tamanho da fonte para 12px */
-    gap: 10px; /* Reduz o espaço entre os elementos filhos do rodapé */
+    font-size: 10px; /* Define o tamanho da fonte para 12px */
+    gap: 100px; /* Reduz o espaço entre os elementos filhos do rodapé */
+    font-family: sans-serif; 
 }
 footer div {
-    margin: 0 50px; /* Adiciona margem à esquerda e à direita para cada div dentro do rodapé */
+    margin: 0; /* Adiciona margem à esquerda e à direita para cada div dentro do rodapé */
 }
 footer a {
     color: #fff; /* Define a cor do link para branco */
+}
+.social-link {
+    margin: 0; /* Remove a margem dos parágrafos */
+}
+.container label {
+    color: #205d88; /* Define a cor das labels para #205d88 */
+}
+.footer-logo {
+    width: 40px; /* Define a largura do logo para 50px */
+    height: 30px;
 }
 
