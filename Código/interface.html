@@ -1,63 +1,51 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <link rel="stylesheet" type="text/css" href="InterfaceStyle.css" />
-  </head>
-  <body>
-    <div id="userDisplay">
-      <span>User: </span><span id="displayUsername"></span>
+
+<head>
+  <link rel="stylesheet" type="text/css" href="InterfaceStyle.css" />
+</head>
+
+<body>
+  <div id="userDisplay">
+    <span>User: </span><span id="displayUsername"></span>
+  </div>
+  <button id="logoutButton">Terminar Sessão</button>
+
+  <div id="todo" class="taskArea" ondrop="drop(event)" ondragover="allowDrop(event)">
+    <h2>To do</h2>
+    <div id="task1" draggable="true" ondragstart="drag(event)">Task 1</div>
+    <div id="task2" draggable="true" ondragstart="drag(event)">Task 2</div>
+    <div id="task3" draggable="true" ondragstart="drag(event)">Task 3</div>
+  </div>
+
+  <div id="doing" class="taskArea" ondrop="drop(event)" ondragover="allowDrop(event)">
+    <h2>Doing</h2>
+  </div>
+
+  <div id="done" class="taskArea" ondrop="drop(event)" ondragover="allowDrop(event)">
+    <h2>Done</h2>
+  </div>
+
+  <button id="addTaskButton">Adicionar Tarefa</button>
+
+  <div id="newTaskModal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <label for="taskTitle">Título da Tarefa:</label>
+      <input type="text" id="taskTitle" name="taskTitle">
+      <label for="taskDescription">Descrição da Tarefa:</label>
+      <textarea id="taskDescription" name="taskDescription"></textarea>
+      <button id="submitTaskButton">Adicionar Tarefa</button>
+      <button id="cancelTaskButton">Cancelar</button>
     </div>
-    <button id="logoutButton">Terminar Sessão</button>
+  </div>
 
-    <div
-      id="todo"
-      class="taskArea"
-      ondrop="drop(event)"
-      ondragover="allowDrop(event)"
-    >
-      <h2>To do</h2>
-      <div id="task1" draggable="true" ondragstart="drag(event)">Task 1</div>
-      <div id="task2" draggable="true" ondragstart="drag(event)">Task 2</div>
-      <div id="task3" draggable="true" ondragstart="drag(event)">Task 3</div>
-    </div>
+  <div id="contextMenu" class="context-menu">
+    <div id="viewDetails">Ver Detalhes</div>
+    <div id="deleteTask">Eliminar Task</div>
+  </div>
 
-    <div
-      id="doing"
-      class="taskArea"
-      ondrop="drop(event)"
-      ondragover="allowDrop(event)"
-    >
-      <h2>Doing</h2>
-    </div>
+  <script src="interfacescript.js"></script>
+</body>
 
-    <div
-      id="done"
-      class="taskArea"
-      ondrop="drop(event)"
-      ondragover="allowDrop(event)"
-    >
-      <h2>Done</h2>
-    </div>
-
-    <button id="addTaskButton">Adicionar Tarefa</button>
-
-    <div id="newTaskModal" class="modal">
-      <div class="modal-content">
-        <span class="close">&times;</span>
-        <label for="taskTitle">Título da Tarefa:</label>
-        <input type="text" id="taskTitle" name="taskTitle">
-        <label for="taskDescription">Descrição da Tarefa:</label>
-        <textarea id="taskDescription" name="taskDescription"></textarea>
-        <button id="submitTaskButton">Adicionar Tarefa</button>
-        <button id="cancelTaskButton">Cancelar</button>
-      </div>
-    </div>
-
-    <div id="contextMenu" class="context-menu">
-      <div id="viewDetails">Ver Detalhes</div>
-      <div id="deleteTask">Eliminar Task</div>
-    </div>
-
-    <script src="interfacescript.js"></script>
-  </body>
 </html>

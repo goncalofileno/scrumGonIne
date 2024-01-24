@@ -32,10 +32,18 @@ body {
     color: #ffffff; /* White */
   }
   
+
   .taskArea {
-    background-color: #87cefa; /* Sky blue */
-    color: #080c71;
-    margin-top: 50px; /* Blue */
+    border: 2px solid #000; /* Adds a border to the task area */
+    background-color: #f0f0f0; /* Changes the background color of the task area */
+    padding: 20px; /* Adds some space inside the task area */
+  }
+
+  .task {
+    background-color: #fff; /* Changes the background color of the tasks */
+    border: 1px solid #000; /* Adds a border to the tasks */
+    margin: 10px; /* Adds some space around the tasks */
+    padding: 10px; /* Adds some space inside the tasks */
   }
 
   .modal {
