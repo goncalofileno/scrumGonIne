@@ -1,12 +1,13 @@
 //Listener para quando todas as acções de quando a página carrega
 window.onload = function () {
-  var username = sessionStorage.getItem("username"); //Obtém o o valor com o id username do sessionStorage
+  let username = sessionStorage.getItem("username"); //Obtém o o valor com o id username do sessionStorage
   if (username) {
     document.getElementById("displayUsername").textContent = username; //Coloca o username no displayUsername se existir
   }
 };
+
 //Declaração de variáveis
-var botaoLogout = document.getElementById("logoutButton"); //Obtém o botão de logout
+let botaoLogout = document.getElementById("logoutButton"); //Obtém o botão de logout
 
 //Listener para quando o botão de logout é clicado
 botaoLogout.addEventListener("click", function () {
@@ -50,10 +51,10 @@ function drop(event) {
 
 //SCRIPTS RELATIVOS AO MODAL DE ADICIONAR TAREFA
 
-var modal = document.getElementById("newTaskModal"); //Obtém o modal
-var botaoAbreModal = document.getElementById("addTaskButton"); //Obtém o botão que abre o modal
-var botaoAddTarefa = document.getElementById("submitTaskButton"); //Obtém o botão que adiciona a tarefa
-var cancelBtn = document.getElementById("cancelTaskButton"); //Obtém o botão que cancela a adição da tarefa
+let modal = document.getElementById("newTaskModal"); //Obtém o modal
+let botaoAbreModal = document.getElementById("addTaskButton"); //Obtém o botão que abre o modal
+let botaoAddTarefa = document.getElementById("submitTaskButton"); //Obtém o botão que adiciona a tarefa
+let cancelBtn = document.getElementById("cancelTaskButton"); //Obtém o botão que cancela a adição da tarefa
 
 // Quando o usuário clica no botão, abre o modal
 botaoAbreModal.onclick = function () {
@@ -76,6 +77,9 @@ window.onclick = function (event) {
   }
 };
 
+// Initialize tasks array from session storage, or as an empty array if session storage is empty
+let tasks = JSON.parse(sessionStorage.getItem('tasks')) || [];
+
 //Listener para quando o botão de adicionar tarefa é clicado
 botaoAddTarefa.onclick = function () {
   var taskTitle = document.getElementById("taskTitle").value;
@@ -86,27 +90,28 @@ botaoAddTarefa.onclick = function () {
     return;
   }
 
-  var newTask = document.createElement("div");
-  newTask.innerHTML = taskTitle;
+  let taskId = Math.floor(Math.random() * 1000000);
+  let taskSection = 'todo';
 
-  // Create a task object with 'titulo', 'descricao', and 'id' attributes
-  var taskObject = {
-    titulo: taskTitle,
-    descricao: taskDescription,
-    id: "task" + Math.random().toString(36).substr(2, 9),
+  // Create a new task object
+  let task = {
+    id: taskId,
+    title: taskTitle,
+    description: taskDescription,
+    section: taskSection
   };
 
-  // Assign the id of the task object to the id of the newTask element
-  newTask.id = taskObject.id;
+  // Add the new task object to the tasks array
+  tasks.push(task);
 
-  // Store the task object in the newTask element's dataset
-  newTask.dataset.task = JSON.stringify(taskObject); //Converte o objeto para uma string JSON
+  // Save the tasks array to session storage
+  sessionStorage.setItem('tasks', JSON.stringify(tasks));
 
-  newTask.draggable = true;
 
-  newTask.ondragstart = function (event) {
-    drag(event);
-  };
+
+
+
+
 
   //script that allows the task to be dragged to the trash icon and be deleted
   var trashIcon = document.getElementById("trashIcon");
