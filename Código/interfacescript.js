@@ -120,7 +120,7 @@ botaoAddTarefa.onclick = function () {
     // Remove the task element
     var taskElement = document.getElementById(data);
     if (taskElement) {
-      taskElement.parentNode.removeChild(taskElement);
+      taskElement.parentNode.removeChild(taskElement);//Remove o elemento
     }
   }
   
