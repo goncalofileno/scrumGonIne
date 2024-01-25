@@ -1,118 +1,140 @@
 body {
-    font-family: 'Arial', sans-serif;
-    display: flex;
-    justify-content: space-around;
-    align-items: flex-start;
-    height: 100vh;
-    margin: 0;
-    background-color: #add8e6; /* Light blue */
+  font-family: "Arial", sans-serif;
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-start;
+  height: 100vh;
+  margin: 0;
+  background-color: #add8e6; /* Light blue */
 }
 
-  
-  #userDisplay {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    color: #22709d; /* Blue */
-  }
+#userDisplay {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  color: #22709d; /* Blue */
+}
 
-  #logoutButton {
-    position: absolute;
-    top: 40px;
-    right: 20px;
-    background-color: #77b4ed; /* Blue */
-    color: #ffffff; /* White */
-  }
+#logoutButton {
+  position: absolute;
+  top: 40px;
+  right: 20px;
+  background-color: #77b4ed; /* Blue */
+  color: #ffffff; /* White */
+}
 
-  #addTaskButton{
-    position: absolute;
-    bottom: 20px;
-    right: 20px;
-    background-color: #77b4ed; /* Blue */
-    color: #ffffff; /* White */
-  }
-  
+#addTaskButton {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  background-color: #77b4ed; /* Blue */
+  color: #ffffff; /* White */
+}
 
-  .taskArea {
-    border: 2px solid #000; /* Adds a border to the task area */
-    background-color: #f0f0f0; /* Changes the background color of the task area */
-    padding: 20px; /* Adds some space inside the task area */
-  }
+.taskArea {
+  border: 2px solid #000; /* Adds a border to the task area */
+  background-color: #f0f0f0; /* Changes the background color of the task area */
+  padding: 20px; /* Adds some space inside the task area */
+}
 
-  .task {
-    background-color: #fff; /* Changes the background color of the tasks */
-    border: 1px solid #000; /* Adds a border to the tasks */
-    margin: 10px; /* Adds some space around the tasks */
-    padding: 10px; /* Adds some space inside the tasks */
-  }
+.task {
+  background-color: #fff; /* Changes the background color of the tasks */
+  border: 1px solid #000; /* Adds a border to the tasks */
+  margin: 10px; /* Adds some space around the tasks */
+  padding: 10px; /* Adds some space inside the tasks */
+}
 
-  .modal {
-    display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
-    left: 0;
-    top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
-    background-color: rgb(0,0,0); /* Fallback color */
-    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-  }
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0, 0, 0); /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+}
 
-  .modal-content {
-    background-color: #fefefe;
-    margin: 15% auto; /* 15% from the top and centered */
-    padding: 20px;
-    border: 1px solid #888;
-    width: 80%; /* Could be more or less, depending on screen size */
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-  }
+.modal-content {
+  background-color: #fefefe;
+  margin: 15% auto; /* 15% from the top and centered */
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%; /* Could be more or less, depending on screen size */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
 
-  .close {
-    color: #aaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-  }
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
 
-  .close:hover,
-  .close:focus {
-    color: black;
-    text-decoration: none;
-    cursor: pointer;
-  }
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
 
-  #editTaskModal {
-    display: none; /* Inicialmente escondido */
-    position: fixed; /* Fixo na janela do navegador */
-    z-index: 1; /* Fica no topo */
-    left: 0;
-    top: 0;
-    width: 100%; /* Largura total */
-    height: 100%; /* Altura total */
-    overflow: auto; /* Habilita scroll se necessário */
-    background-color: rgb(0,0,0); /* Fundo preto com opacidade */
-    background-color: rgba(0,0,0,0.4); /* Fundo preto com opacidade */
-  }
-  
-  /* Estilo para o conteúdo da modal */
-  .modal-content {
-    background-color: #fefefe;
-    margin: 15% auto; /* 15% do topo e centralizado */
-    padding: 20px;
-    border: 1px solid #888;
-    width: 80%; /* 80% da largura */
-    text-align: center; /* Alinha o texto ao centro */
-  }
-  
-  /* Estilo para os botões da modal */
-  .modal-content button {
-    display: inline-block; /* Alinha os botões lado a lado */
-    margin: 10px; /* Espaçamento em torno dos botões */
-  }
+#editTaskModal {
+  display: none; /* Inicialmente escondido */
+  position: fixed; /* Fixo na janela do navegador */
+  z-index: 1; /* Fica no topo */
+  left: 0;
+  top: 0;
+  width: 100%; /* Largura total */
+  height: 100%; /* Altura total */
+  overflow: auto; /* Habilita scroll se necessário */
+  background-color: rgb(0, 0, 0); /* Fundo preto com opacidade */
+  background-color: rgba(0, 0, 0, 0.4); /* Fundo preto com opacidade */
+}
 
+/* Estilo para o conteúdo da modal */
+.modal-content {
+  background-color: #fefefe;
+  margin: 15% auto; /* 15% do topo e centralizado */
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%; /* 80% da largura */
+  text-align: center; /* Alinha o texto ao centro */
+}
 
-  
+/* Estilo para os botões da modal */
+.modal-content button {
+  display: inline-block; /* Alinha os botões lado a lado */
+  margin: 10px; /* Espaçamento em torno dos botões */
+}
+
+#contextMenu {
+  display: none;
+  position: absolute;
+  background-color: #f0f0f0;
+  border: 1px solid #ccc;
+  padding: 10px;
+  z-index: 1000; /* Ensure it appears above other elements */
+}
+
+#contextMenu div {
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+#contextMenu div:hover {
+  background-color: #ccc;
+}
+
+#trashIcon {
+  position: fixed;
+  bottom: 10px;
+  left: 10px;
+  width: 50px; /* Adjust as needed */
+  height: 50px; /* Adjust as needed */
+}
+
