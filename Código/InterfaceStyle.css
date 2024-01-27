@@ -1,72 +1,189 @@
 body {
   font-family: "Arial", sans-serif;
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
   align-items: flex-start;
   height: 100vh;
   margin: 0;
-  background-color: #add8e6; /* Light blue */
+  background-image: url('exp1.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+body::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(206, 200, 200, 0.5); 
+  z-index: -1;
 }
 
 #userDisplay {
   position: absolute;
-  top: 20px;
-  right: 20px;
-  color: #22709d; /* Blue */
+  top: 200px;
+  left: 30px;
+  color: #205d88; /* Blue */
+  font-weight: bold;
 }
 
 #logoutButton {
   position: absolute;
-  top: 40px;
-  right: 20px;
-  background-color: #77b4ed; /* Blue */
-  color: #ffffff; /* White */
+  top: 10px;
+  right: 40px;
+  background-color: transparent; /* No background */
+  color: #205d88; /* Blue symbol */
+  border: none;
+  width: 60px;
+  height: 60px;
+  font-size: 15px;
+  font-weight: bold;
+  transition: font-size 0.3s ease; /* Add this line */
+}
+
+#logoutButton:hover {
+  font-size: 20px; /* Increase this value to make the symbol larger when hovered */
 }
 
 #addTaskButton {
   position: absolute;
-  bottom: 20px;
-  right: 20px;
-  background-color: #77b4ed; /* Blue */
+  top: 40%; /* Adjust this value to move the button up or down */
+  left: 47%;
+  transform: translate(-50%, -50%);
+  background-color: #205d88; /* Blue */
   color: #ffffff; /* White */
+  border: none; /* Removes the black border */
+  width: 150px; /* Increase this value to make the button wider */
+  height: 40px;
+  border-radius: 10px;
 }
 
+
 .taskArea {
-  border: 2px solid #000; /* Adds a border to the task area */
-  background-color: #f0f0f0; /* Changes the background color of the task area */
-  padding: 20px; /* Adds some space inside the task area */
+  width: 18%;
+  height: 500px;
+  border: 4px solid #205d88;
+  background-color: rgba(168, 146, 124, 0.3);
+  margin-top: 100px;
+  margin-bottom: 10px;
+  margin-right: 20px;
+  border-radius: 10px;
+  overflow: auto;
+  transform: translateX(110px);
+}
+
+.taskArea:last-child {
+  margin-right: 0;
+}
+
+.taskArea h2 {
+  position: sticky;
+  top: 0;
+  background-color: #205d88;
+  margin: 0;
+  padding: 10px;
+  font-family: sans-serif;
+  color: #ffffff; 
+  font-size: 20px;
+  width: 100%;
+  box-sizing: border-box;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
 }
 
 .task {
+  background-color: #fff;
+  border: 2px solid #000;
+  margin: 0px;
+  padding: 20px;
+  box-sizing: border-box; /* Add this line */
+}
+
+
+
+.taskArea div {
+  width: 90%;
   background-color: #fff; /* Changes the background color of the tasks */
-  border: 1px solid #000; /* Adds a border to the tasks */
-  margin: 10px; /* Adds some space around the tasks */
+  border: 2px solid #205d88; /* Adds a black border to the tasks */
+  margin: 5px 10px; /* Adds some space around the tasks */
   padding: 10px; /* Adds some space inside the tasks */
+  box-sizing: border-box; /* Ensures that the padding and border are included in the task's total width and height */
+}
+
+.taskArea div:active {
+  border-width: 4px; /* Aumenta a largura da borda da div quando clicada */
+  transition: border-width 0.3s ease; /* Adiciona um efeito de transição suave */
 }
 
 .modal {
-  display: none; /* Hidden by default */
-  position: fixed; /* Stay in place */
-  z-index: 1; /* Sit on top */
+  display: none;
+  position: fixed;
+  z-index: 1;
   left: 0;
   top: 0;
-  width: 100%; /* Full width */
-  height: 100%; /* Full height */
-  overflow: auto; /* Enable scroll if needed */
-  background-color: rgb(0, 0, 0); /* Fallback color */
-  background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#newTaskModal {
+  display: none;
 }
 
 .modal-content {
-  background-color: #fefefe;
-  margin: 15% auto; /* 15% from the top and centered */
+  background-color: rgba(27, 91, 114, 0.9);
   padding: 20px;
   border: 1px solid #888;
-  width: 80%; /* Could be more or less, depending on screen size */
+  width: 60%;
+  max-width: 600px; /* Defina um valor máximo para a largura do modal, ajuste conforme necessário */
+  text-align: left;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+}
+
+.input-container {
+  margin-bottom: 15px;
+}
+
+.input-container label {
+  color: #fff;
+  margin-bottom: 5px;
+}
+
+.input-container input,
+.input-container textarea {
+  width: 100%;
+  padding: 10px;
+  box-sizing: border-box;
+  margin-bottom: 10px;
+}
+
+.input-container textarea {
+  height: 120px; /* Adjust as needed */
+}
+
+.buttons-container {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  justify-content: space-between;
+}
+
+.buttons-container button {
+  width: 48%; /* Adjust as needed */
+  padding: 10px;
+  box-sizing: border-box;
+  background-color: #205d88;
+  color: #fff;
+  cursor: pointer;
+  border: none;
+}
+
+.buttons-container button:hover {
+  background-color: #164866;
 }
 
 .close {
@@ -92,17 +209,17 @@ body {
   width: 100%; /* Largura total */
   height: 100%; /* Altura total */
   overflow: auto; /* Habilita scroll se necessário */
-  background-color: rgb(0, 0, 0); /* Fundo preto com opacidade */
   background-color: rgba(0, 0, 0, 0.4); /* Fundo preto com opacidade */
 }
 
 /* Estilo para o conteúdo da modal */
 .modal-content {
-  background-color: #fefefe;
+  background-color: #205d88; /* Fundo branco com opacidade */
   margin: 15% auto; /* 15% do topo e centralizado */
   padding: 20px;
   border: 1px solid #888;
-  width: 80%; /* 80% da largura */
+  width: 40%; /* 50% da largura */
+  height: 40%;
   text-align: center; /* Alinha o texto ao centro */
 }
 
@@ -115,10 +232,12 @@ body {
 #contextMenu {
   display: none;
   position: absolute;
-  background-color: #f0f0f0;
+  background-color: #ffffff; /* Cor de fundo azul */
+  color: #205d88; /* Cor do texto branco */
+  font-family: 'Arial', sans-serif; /* Estilo de fonte sans-serif */
   border: 1px solid #ccc;
   padding: 10px;
-  z-index: 1000; /* Ensure it appears above other elements */
+  z-index: 1000; /* Garante que apareça acima de outros elementos */
 }
 
 #contextMenu div {
@@ -127,14 +246,55 @@ body {
 }
 
 #contextMenu div:hover {
-  background-color: #ccc;
+  background-color: #bbc6cc; /* Cor de fundo azul mais escura ao passar o mouse */
 }
 
 #trashIcon {
   position: fixed;
   bottom: 10px;
-  left: 10px;
-  width: 50px; /* Adjust as needed */
-  height: 50px; /* Adjust as needed */
+  left: 20px;
+  width: 30px; /* Adjust as needed */
+  height: 30px; /* Adjust as needed */
+  transition: transform 0.3s ease; /* Adicione uma transição para suavizar o aumento de tamanho */
 }
 
+#trashIcon.highlightTrash {
+  bottom: 20px;
+  left: 30px;
+  transform: scale(1.5); /* Ajuste conforme necessário para o tamanho desejado */
+  transition: transform 0.3s ease; /* Adiciona uma transição suave */
+}
+
+
+aside {
+  position: fixed; /* Makes the aside stick to the left side of the page */
+  top: 0; /* Aligns the aside with the top of the page */
+  left: 0; /* Aligns the aside with the left of the page */
+  height: 100vh; /* Makes the aside the same height as the viewport */
+  background-color: rgba(240, 240, 240, 0.2); /* Makes the background color semi-transparent */
+  padding: 20px; /* Some padding */
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2); /* Shadow for depth */
+  width: 200px; /* Adjust as needed */
+  overflow: auto; /* Adds scroll if the content overflows */
+}
+
+aside::after {
+  content: "";
+  position: absolute;
+  top: 230px; /* Ajuste conforme necessário para a posição vertical */
+  left: 0;
+  width: 100%;
+  height: 3px; /* Espessura da linha */
+  background-color: rgba(32, 93, 136, 0.5); /* Cor da linha azul com transparência */
+}
+
+#logo {
+  position: absolute; /* Change this line */
+  top: 0; /* Change this line */
+  left: 0; /* Change this line */
+  width: 170px; /* Adjust as needed */
+  height: 120px; /* Adjust as needed */
+  margin: 30px; /* Adjust as needed */
+  filter: brightness(70%);
+  z-index: 1; /* Makes the logo appear in front of other elements */
+}
