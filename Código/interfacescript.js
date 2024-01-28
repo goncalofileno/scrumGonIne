@@ -4,9 +4,38 @@ window.onload = function () {
   if (username) {
     document.getElementById("displayUsername").textContent = username; //Coloca o username no displayUsername se existir
   }
+  displayTasks(); //Chama a função displayTasks para mostrar as tarefas
 };
 
-var trashIcon = document.getElementById("trashIcon");
+let trashIcon = document.getElementById("trashIcon");
+let addTaskButton = document.getElementById("addTaskButton");
+let newTaskModal = document.getElementById("newTaskModal");
+let cancelButtonAddTaskModal = document.getElementById("cancelTaskButton");
+let ToDoTasks = JSON.parse(sessionStorage.getItem("ToDoTasks")) || [];
+let DoingTasks = JSON.parse(sessionStorage.getItem("DoingTasks")) || [];
+let DoneTasks = JSON.parse(sessionStorage.getItem("DoneTasks")) || [];
+let todoSection = document.getElementById("todo");
+let doingSection = document.getElementById("doing");
+let doneSection = document.getElementById("done");
+let yesButton = document.querySelector(
+  "#deleteWarning .options .btn:first-child"
+);
+let noButton = document.querySelector(
+  "#deleteWarning .options .btn:last-child"
+);
+let contextMenu = document.getElementById("contextMenu");
+let deleteTaskOption = document.getElementById("deleteTask");
+let editTaskOption = document.getElementById("editTask");
+let taskDetailsModal = document.getElementById("taskDetailsModal");
+let modalTaskTitle = document.getElementById("taskTitleinfo");
+let modalTaskDescription = document.getElementById("taskDescriptioninfo");
+let modalOkButton = document.getElementById('modalOkButton');
+
+// Add a 'click' event listener to the close button
+document.querySelector(".modal-close").addEventListener("click", function () {
+  // Hide the modal
+  taskDetailsModal.style.display = "none";
+});
 
 trashIcon.ondragover = function (event) {
   allowDrop(event);
@@ -20,14 +49,16 @@ trashIcon.ondragleave = function () {
 };
 
 trashIcon.ondrop = function (event) {
-  event.preventDefault();
-  var data = event.dataTransfer.getData("text");
+  event.preventDefault(); // Prevent the default action
+  let taskId = event.dataTransfer.getData("text/plain"); // Get the task's identifier
 
-  // Remove the task element
-  var taskElement = document.getElementById(data);
-  if (taskElement) {
-    taskElement.parentNode.removeChild(taskElement);
-  }
+  // Store the task's identifier in a data attribute of the deleteWarning modal
+  let deleteWarning = document.getElementById("deleteWarning");
+  deleteWarning.setAttribute("data-task-id", taskId);
+
+  // Show the deleteWarning modal
+  deleteWarning.style.display = "block";
+  displayTasks(); // Display the tasks
   trashIcon.src = "trash.png";
 };
 //Declaração de variáveis
@@ -39,116 +70,280 @@ botaoLogout.addEventListener("click", function () {
   window.location.href = "loginPage.html"; //Redireciona para a página de login
 });
 
-//SCRIPTS RELATIVOS AO DRAG AND DROP
+addTaskButton.addEventListener("click", function () {
+  // Change the display style of the newTaskModal to block
+  newTaskModal.style.display = "block";
+});
 
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////
+cancelButtonAddTaskModal.addEventListener("click", function () {
+  // Change the display style of the newTaskModal to none
+  newTaskModal.style.display = "none";
+}); //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-//SCRIPTS RELATIVOS AO MODAL DE ADICIONAR TAREFA
-
-let modal = document.getElementById("newTaskModal"); //Obtém o modal
-let botaoAbreModal = document.getElementById("addTaskButton"); //Obtém o botão que abre o modal
-let botaoAddTarefa = document.getElementById("submitTaskButton"); //Obtém o botão que adiciona a tarefa
-let cancelBtn = document.getElementById("cancelTaskButton"); //Obtém o botão que cancela a adição da tarefa
-
-// Quando o usuário clica no botão, abre o modal
-botaoAbreModal.onclick = function () {
-  modal.style.display = "block"; //Mostra o modal
-};
-
-// Quando o usuário clica no botão, cancela a adição da tarefa
-cancelBtn.onclick = function () {
-  document.getElementById("taskTitle").value = "";
-  document.getElementById("taskDescription").value = "";
-  modal.style.display = "none";
-};
-
-// Quando o usuário clica em qualquer lugar fora do modal, fecha o modal
-window.onclick = function (event) {
-  if (event.target == modal) {
-    document.getElementById("taskTitle").value = "";
-    document.getElementById("taskDescription").value = "";
-    modal.style.display = "none";
+window.addEventListener("click", function (event) {
+  // If the event's target is the newTaskModal, change its display style to none
+  if (event.target == newTaskModal) {
+    newTaskModal.style.display = "none";
   }
-};
 
-//Inicias as listas de tarefas
-let tasksToDo = JSON.parse(sessionStorage.getItem("tasks")) || [];
-let tasksDoing = JSON.parse(sessionStorage.getItem("tasks")) || [];
-let tasksDone = JSON.parse(sessionStorage.getItem("tasks")) || [];
+  if (contextMenu.style.display === "block") {
+    contextMenu.style.display = "none";
+  }
 
-//Função que gera um id único para cada tarefa
-function generateUniqueId() {
-  let identificador;
+  if (event.target == taskDetailsModal) {
+    taskDetailsModal.style.display = 'none';
+  }
+});
+
+function generateUniqueID() {
+  let id;
   do {
     id = Math.floor(Math.random() * 1000000);
-  } while (tasks.find((task) => task.identificador === identificador));
-  return identificador;
+  } while (
+    ToDoTasks.some((task) => task.identificador === id) ||
+    DoingTasks.some((task) => task.identificador === id) ||
+    DoneTasks.some((task) => task.identificador === id)
+  );
+  return id;
 }
 
 function displayTasks() {
-  // Clear the existing tasks
-  document.getElementById("tasksToDo").innerHTML = "";
-  document.getElementById("tasksDoing").innerHTML = "";
-  document.getElementById("tasksDone").innerHTML = "";
+  // Get the task sections
+  let todoSection = document.getElementById("todo");
+  let doingSection = document.getElementById("doing");
+  let doneSection = document.getElementById("done");
 
-  // Function to create a task element
+  // Clear the sections
+  todoSection.innerHTML = "";
+  doingSection.innerHTML = "";
+  doneSection.innerHTML = "";
+
+  // Function to create task element
   function createTaskElement(task) {
-    var taskElement = document.createElement("div");
-    taskElement.id = task.identificador;
+    let taskElement = document.createElement("div");
     taskElement.textContent = task.titulo;
-    taskElement.draggable = true;
-    taskElement.ondragstart = function (event) {
-      event.dataTransfer.setData("text", task.identificador);
-    };
+    taskElement.id = task.identificador;
+    taskElement.draggable = true; // Make the task draggable
+    taskElement.addEventListener("dragstart", function (event) {
+      event.dataTransfer.setData("text/plain", event.target.id);
+    });
+
+    // Add event listener for double click
+    taskElement.addEventListener("dblclick", function () {
+      // Set the task details in the modal
+      modalTaskTitle.textContent = task.titulo;
+      modalTaskDescription.textContent = task.descricao;
+
+      // Show the modal
+      taskDetailsModal.style.display = "block";
+    });
+
+    // Add event listener for context menu
+    taskElement.addEventListener("contextmenu", (e) => {
+      e.preventDefault();
+
+      // Position context menu at cursor location
+      let contextMenu = document.getElementById("contextMenu");
+      contextMenu.style.top = `${e.pageY}px`;
+      contextMenu.style.left = `${e.pageX}px`;
+
+      // Store task id in context menu
+      contextMenu.setAttribute("data-task-id", task.identificador);
+
+      // Find task in the appropriate list
+      let taskToEdit =
+        ToDoTasks.find((t) => t.identificador === task.identificador) ||
+        DoingTasks.find((t) => t.identificador === task.identificador) ||
+        DoneTasks.find((t) => t.identificador === task.identificador);
+
+      // Store task in sessionStorage
+      sessionStorage.setItem("taskToEdit", JSON.stringify(taskToEdit));
+
+      // Show context menu
+      contextMenu.style.display = "block";
+    });
+
     return taskElement;
   }
 
-  // Iterate over the tasksToDo array
-  tasksToDo.forEach(function (task) {
-    var taskElement = createTaskElement(task);
-    document.getElementById("tasksToDo").appendChild(taskElement);
+  // Add tasks to the ToDo section
+  ToDoTasks.forEach((task) => {
+    todoSection.appendChild(createTaskElement(task));
   });
 
-  // Iterate over the tasksDoing array
-  tasksDoing.forEach(function (task) {
-    var taskElement = createTaskElement(task);
-    document.getElementById("tasksDoing").appendChild(taskElement);
+  // Add tasks to the Doing section
+  DoingTasks.forEach((task) => {
+    doingSection.appendChild(createTaskElement(task));
   });
 
-  // Iterate over the tasksDone array
-  tasksDone.forEach(function (task) {
-    var taskElement = createTaskElement(task);
-    document.getElementById("tasksDone").appendChild(taskElement);
+  // Add tasks to the Done section
+  DoneTasks.forEach((task) => {
+    doneSection.appendChild(createTaskElement(task));
   });
 }
 
-//Listener para quando o botão de adicionar tarefa é clicado
-botaoAddTarefa.onclick = function () {
-  var taskTitle = document.getElementById("taskTitle").value;
-  var taskDescription = document.getElementById("taskDescription").value;
+// Handle the dragover event
+todoSection.addEventListener("dragover", function (event) {
+  event.preventDefault();
+});
 
-  if (taskTitle.trim() === "" || taskDescription.trim() === "") {
-    alert("Por favor, preencha o título e a descrição da tarefa.");
-    return;
-  } else {
-    let taskIdentificador = generateUniqueId();
+doingSection.addEventListener("dragover", function (event) {
+  event.preventDefault();
+});
 
-    // Create a new task object
-    let task = {
-      identificador: taskIdentificador,
-      titulo: taskTitle,
-      descricao: taskDescription,
-    };
+doneSection.addEventListener("dragover", function (event) {
+  event.preventDefault();
+});
 
-    // Add the new task object to the tasks array
-    tasksToDo.push(task);
+// Handle the drop event
+todoSection.addEventListener("drop", drop);
+doingSection.addEventListener("drop", drop);
+doneSection.addEventListener("drop", drop);
 
-    // Save the tasks array to session storage
-    sessionStorage.setItem("tasks", JSON.stringify(tasksToDo));
+submitTaskButton.addEventListener("click", function () {
+  // Get the task title and description from the input fields
+  let titulo = document.getElementById("taskTitle").value;
+  let descricao = document.getElementById("taskDescription").value;
 
-    document.getElementById("taskTitle").value = "";
-    document.getElementById("taskDescription").value = "";
-    modal.style.display = "none";
-    displayTasks();
+  // Generate a unique ID for the task
+  let identificador = generateUniqueID();
+
+  // Create a new task object
+  let task = {
+    identificador: identificador,
+    titulo: titulo,
+    descricao: descricao,
+  };
+
+  // Add the new task object to the ToDoTasks array
+  ToDoTasks.push(task);
+
+  // Save the ToDoTasks array to session storage
+  sessionStorage.setItem("ToDoTasks", JSON.stringify(ToDoTasks));
+
+  // Clear the input fields
+  document.getElementById("taskTitle").value = "";
+  document.getElementById("taskDescription").value = "";
+
+  displayTasks();
+
+  // Close the modal
+  newTaskModal.style.display = "none";
+});
+
+function allowDrop(event) {
+  event.preventDefault(); // Prevent the default to allow dropping
+}
+
+// Function to handle drop
+function drop(event) {
+  event.preventDefault(); // Prevent the default action
+  let taskId = event.dataTransfer.getData("text/plain"); // Get the task's identifier
+
+  // Get the task element and the target section
+  let taskElement = document.getElementById(taskId);
+  let targetSection = event.target;
+
+  // If the target is not a section, get the parent section
+  if (!targetSection.classList.contains("taskArea")) {
+    targetSection = targetSection.closest(".taskArea");
   }
-};
+
+  // If the task element and the target section exist, move the task to the section
+  if (taskElement && targetSection) {
+    targetSection.appendChild(taskElement);
+
+    // Find the task in the tasks arrays and remove it
+    let taskIndex = ToDoTasks.findIndex((task) => task.identificador == taskId);
+    let taskList = ToDoTasks;
+    if (taskIndex === -1) {
+      taskIndex = DoingTasks.findIndex((task) => task.identificador == taskId);
+      taskList = DoingTasks;
+      if (taskIndex === -1) {
+        taskIndex = DoneTasks.findIndex((task) => task.identificador == taskId);
+        taskList = DoneTasks;
+      }
+    }
+    let task = taskList.splice(taskIndex, 1)[0]; // Remove the task from its current list
+
+    // Add the task to the new list
+    if (targetSection.id === "todo") {
+      ToDoTasks.push(task);
+    } else if (targetSection.id === "doing") {
+      DoingTasks.push(task);
+    } else if (targetSection.id === "done") {
+      DoneTasks.push(task);
+    }
+
+    // Save the tasks arrays to session storage
+    sessionStorage.setItem("ToDoTasks", JSON.stringify(ToDoTasks));
+    sessionStorage.setItem("DoingTasks", JSON.stringify(DoingTasks));
+    sessionStorage.setItem("DoneTasks", JSON.stringify(DoneTasks));
+
+    displayTasks(); // Display the tasks
+  }
+}
+// Handle the click event on the "Yes" button
+yesButton.addEventListener("click", function () {
+  let deleteWarning = document.getElementById("deleteWarning");
+  let taskId = deleteWarning.getAttribute("data-task-id");
+
+  // Find and remove the task from its current list
+  let taskIndex = ToDoTasks.findIndex((task) => task.identificador == taskId);
+  let taskList = ToDoTasks;
+  if (taskIndex === -1) {
+    taskIndex = DoingTasks.findIndex((task) => task.identificador == taskId);
+    taskList = DoingTasks;
+    if (taskIndex === -1) {
+      taskIndex = DoneTasks.findIndex((task) => task.identificador == taskId);
+      taskList = DoneTasks;
+    }
+  }
+  taskList.splice(taskIndex, 1); // Remove the task from its current list
+
+  // Save the tasks arrays to session storage
+  sessionStorage.setItem("ToDoTasks", JSON.stringify(ToDoTasks));
+  sessionStorage.setItem("DoingTasks", JSON.stringify(DoingTasks));
+  sessionStorage.setItem("DoneTasks", JSON.stringify(DoneTasks));
+
+  displayTasks(); // Display the tasks
+
+  // Hide the deleteWarning modal
+  deleteWarning.style.display = "none";
+});
+
+// Handle the click event on the "No" button
+noButton.addEventListener("click", function () {
+  // Hide the deleteWarning modal
+  let deleteWarning = document.getElementById("deleteWarning");
+  deleteWarning.style.display = "none";
+});
+
+deleteTaskOption.addEventListener("click", () => {
+  // Hide context menu
+  let contextMenu = document.getElementById("contextMenu");
+  contextMenu.style.display = "none";
+
+  // Get task id from context menu
+  let taskId = contextMenu.getAttribute("data-task-id");
+
+  // Store task id in deleteWarning modal
+  let deleteWarning = document.getElementById("deleteWarning");
+  deleteWarning.setAttribute("data-task-id", taskId);
+
+  // Show deleteWarning modal
+  deleteWarning.style.display = "block";
+});
+
+editTaskOption.addEventListener("click", () => {
+  // Hide context menu
+  let contextMenu = document.getElementById("contextMenu");
+  contextMenu.style.display = "none";
+
+  // Redirect to editTaskPage.html
+  window.location.href = "editTaskPage.html";
+});
+
+modalOkButton.addEventListener('click', function() {
+  taskDetailsModal.style.display = 'none';
+});
