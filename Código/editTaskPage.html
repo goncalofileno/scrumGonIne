@@ -1,29 +1,37 @@
 <!DOCTYPE html>
 <html>
-<head>
+    <head>
         <title>Edit Task</title>
         <link rel="stylesheet" type="text/css" href="editTaskPageStyle.css">
-</head>
-<body>
-        <h1>Edit Task</h1>
-        
-        <label for="editTaskTitle">Title:</label>
-        <textarea type="text" id="editarTarefaTitulo" name="title" required></textarea>
-        <label for="editTaskDescription">Description:</label>
-        <textarea type="text" id="editarTarefaDescricao" name="description" required></textarea>
-        <button type="button" id="GuardaEditarTarefa">Save</button>
-        <button type="button" id="CancelaEditarTarefa">Cancel</button>
+    </head>
+    <body>
+        <div id="editTaskModal" class="modal">
+            <h1>Edit Task</h1>
+            <div class="input-container">
+                <label for="editTaskTitle">Title:</label>
+                <textarea type="text" id="editTaskTitle" name="title"
+                    required></textarea>
+                <label for="editTaskDescription">Description:</label>
+                <textarea type="text" id="editarTarefaDescricao"
+                    name="description"
+                    required></textarea>
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="GuardaEditarTarefa">Save</button>
+                <button type="button" id="CancelaEditarTarefa">Cancel</button>
+            </div>
+        </div>
 
         <div id="confirmationModal" class="modal">
-                <div class="modal-content">
-                    <h4>Confirm Edit</h4>
-                    <p>Are you sure you want to edit this task?</p>
-                </div>
-                <div class="modal-footer">
-                    <button id="confirmEditButton" class="modal-close">Yes</button>
-                    <button id="cancelEditButton" class="modal-close">No</button>
-                </div>
+            <div class="modal-content">
+                <h4>Confirm Edit</h4>
+                <p>Are you sure you want to edit this task?</p>
             </div>
+            <div class="modal-footer">
+                <button id="confirmEditButton" class="modal-close">Yes</button>
+                <button id="cancelEditButton" class="modal-close">No</button>
+            </div>
+        </div>
         <script src="editTaskscript.js"></script>
-</body>
+    </body>
 </html>

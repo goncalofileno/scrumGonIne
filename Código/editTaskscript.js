@@ -5,12 +5,18 @@ window.onload = function() {
   // Populate fields
   document.getElementById('editarTarefaTitulo').value = task.titulo;
   document.getElementById('editarTarefaDescricao').value = task.descricao;
+
+  document.getElementById('editTaskModal').style.display = 'block';
+
+  document.body.classList.add('modal-open');
+
 };
 
 let guardaEditarTarefaButton = document.getElementById('GuardaEditarTarefa');
 let confirmEditButton = document.getElementById('confirmEditButton');
 let cancelEditButton = document.getElementById('cancelEditButton');
 let cancelaEditarTarefaButton = document.getElementById('CancelaEditarTarefa');
+let modal = document.getElementById('editTaskModal');
 
 cancelaEditarTarefaButton.addEventListener('click', function() {
   // Redirect to interface.html
@@ -32,6 +38,7 @@ guardaEditarTarefaButton.addEventListener('click', function() {
     // Show confirmation modal
     let confirmationModal = document.getElementById('confirmationModal');
     confirmationModal.style.display = 'block';
+    modal.style.display = 'none';
   }
 });
 
@@ -39,6 +46,7 @@ cancelEditButton.addEventListener('click', function() {
   // Hide confirmation modal
   let confirmationModal = document.getElementById('confirmationModal');
   confirmationModal.style.display = 'none';
+  modal.style.display = 'block';
 });
 
 confirmEditButton.addEventListener('click', function() {
