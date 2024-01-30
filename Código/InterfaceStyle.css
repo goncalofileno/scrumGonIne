@@ -22,17 +22,29 @@ body::before {
 }
 
 #userDisplay {
-  position: absolute;
-  top: 200px;
-  left: 30px;
+  position: absolute; /* Alterado de 'flex' para 'absolute' */
+  top: 20px;
+  right: 2%; /* Alterado de 'left' para 'right' */
   color: #205d88; /* Blue */
   font-weight: bold;
+}
+
+#displayUsername {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: #1d2d38;
+  text-decoration: underline;
+}
+
+#labelUser{
+  position: relative;
 }
 
 #logoutButton {
   position: absolute;
   top: 10px;
-  right: 40px;
+  right: 20px;
   background-color: transparent; /* No background */
   color: #205d88; /* Blue symbol */
   border: none;
@@ -40,195 +52,275 @@ body::before {
   height: 60px;
   font-size: 15px;
   font-weight: bold;
-  transition: font-size 0.3s ease; /* Add this line */
+  transition: font-size 0.3s ease; 
 }
 
 #logoutButton:hover {
-  font-size: 20px; /* Increase this value to make the symbol larger when hovered */
+  font-size: 20px; /* Aumenta o seu tamanho se passa com o rato por cima*/
+}
+
+#argola1 {
+  position: absolute;
+  top: 105px; 
+  left: 400px; 
+  z-index: 9999;
+  height: 30px;
+}
+#argola2 {
+  position: absolute;
+  top: 105px; 
+  left: 460px; 
+  z-index: 9999;
+  height: 30px;
+}
+#argola3 {
+  position: absolute;
+  top: 105px; 
+  left: 520px; 
+  z-index: 9999;
+  height: 30px;
+}
+#argola4 {
+  position: absolute;
+  top: 105px; 
+  left: 580px; 
+  z-index: 9999;
+  height: 30px;
+}
+#argola5 {
+  position: absolute;
+  top: 105px; 
+  left: 780px; 
+  z-index: 9999;
+  height: 30px;
+}
+#argola6 {
+  position: absolute;
+  top: 105px; 
+  left: 840px; 
+  z-index: 9999;
+  height: 30px;
+}
+#argola7 {
+  position: absolute;
+  top: 105px; 
+  left: 900px; 
+  z-index: 9999;
+  height: 30px;
+}
+#argola8 {
+  position: absolute;
+  top: 105px; 
+  left: 960px; 
+  z-index: 9999;
+  height: 30px;
+}
+#argola9 {
+  position: absolute;
+  top: 105px; 
+  left: 1160px; 
+  z-index: 9999;
+  height: 30px;
+}
+#argola10 {
+  position: absolute;
+  top: 105px; 
+  left: 1220px; 
+  z-index: 9999;
+  height: 30px;
+}
+#argola11 {
+  position: absolute;
+  top: 105px; 
+  left: 1280px; 
+  z-index: 9999;
+  height: 30px;
+}
+#argola12 {
+  position: absolute;
+  top: 105px;
+  left: 1340px; 
+  z-index: 9999;
+  height: 30px;
 }
 
 #addTaskButton {
   position: absolute;
-  top: 40%; /* Adjust this value to move the button up or down */
-  left: 47%;
-  transform: translate(-50%, -50%);
-  background-color: #205d88; /* Blue */
-  color: #ffffff; /* White */
-  border: none; /* Removes the black border */
-  width: 150px; /* Increase this value to make the button wider */
-  height: 40px;
+  top: 30%; /* Adjust this value to move the button up or down */
+  left: 10%;
+  width: 80%;
+  color: inherit;
+  font-family: inherit;
+  font-size: inherit;
+  background: white;
+  padding: 0.3rem 3.4rem;
+  border: 3px solid #205d88;
+  margin-right: 2.6rem;
+  box-shadow: 0 0 0 #205d88;
+  transition: all 0.2s;
   border-radius: 10px;
 }
 
+#addTaskButton:last-child {
+  margin: 0;
+}
 
+#addTaskButton:hover {
+  box-shadow: 0.4rem 0.4rem 0 #205d88;
+  transform: translate(-0.4rem, -0.4rem);
+}
+
+#addTaskButton:active {
+  box-shadow: 0 0 0 #205d88;
+  transform: translate(0, 0);
+}
+
+
+.titulos > h2 {
+  position: relative;
+  top: 40px;
+  left: 270px; 
+  color: #205d88;
+  font-size: 2em;
+  font-weight: bold;
+}
+  
 .taskArea {
   position: relative;
   width: 18%;
   height: 500px;
   border: 4px solid #205d88;
+  border-left: 10px solid #205d88;
+  border-right: 1px solid #000000;
+  border-bottom: 1px solid #060606;
+  background: linear-gradient(to right, black 50%, transparent 50%);
+  background-size: 1px 100%;
+  background-position: 0 0;
+  background-repeat: no-repeat;
   background-color: rgba(168, 146, 124, 0.3);
-  margin-top: 100px;
+  margin-top: 120px;
   margin-bottom: 10px;
-  margin-right: 20px;
+  margin-right: 10px;
   border-radius: 10px;
   overflow: auto;
-  transform: translateX(110px);
+  transform: translateX(80px);
+  box-shadow: -10px 0 20px rgba(0, 0, 0, 0.5), -1px 0 0 0 black;
+  padding-top: 10px;
 }
 
-.taskArea:last-child {
-  margin-right: 0;
-}
-
-.taskArea h2 {
-  position: sticky;
-  top: 0;
-  background-color: #205d88;
-  margin: 0;
-  padding: 10px;
-  font-family: sans-serif;
-  color: #ffffff; 
-  font-size: 20px;
-  width: 100%;
-  box-sizing: border-box;
-  border-top-left-radius: 5px;
-  border-top-right-radius: 5px;
+.taskArea .tasks-container {
+  overflow-y: auto;
+  flex-grow: 1; 
+  padding: 8px; 
+  
 }
 
 .task {
   background-color: #fff;
   border: 2px solid #000;
   margin: 0px;
-  padding: 20px;
-  box-sizing: border-box; /* Add this line */
+  padding: 5px;
+  box-sizing: border-box;
 }
 
 
 
-.taskArea div {
+.taskArea > div {
   width: 90%;
-  background-color: #fff; /* Changes the background color of the tasks */
-  border: 2px solid #205d88; /* Adds a black border to the tasks */
-  margin: 5px 10px; /* Adds some space around the tasks */
-  padding: 10px; /* Adds some space inside the tasks */
-  box-sizing: border-box; /* Ensures that the padding and border are included in the task's total width and height */
+  background-color: #fff; 
+  border: 2px solid #205d88; 
+  margin: 12px; 
+  padding: 10px; 
+  box-sizing: border-box; 
+  border-radius: 10px;
 }
+
 
 .taskArea div:active {
   border-width: 4px; /* Aumenta a largura da borda da div quando clicada */
   transition: border-width 0.3s ease; /* Adiciona um efeito de transição suave */
 }
 
+.taskArea > div::after {
+  content: "";
+  display: block;
+  border-top: 2px solid #000; /* Adicionado */
+  margin-top: 10px; /* Adicionado */
+}
+
 .modal {
-  display: none;
-  position: fixed;
-  z-index: 1;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.4);
-  display: flex;
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: auto;
+  max-width: 100%; /* Maximum width */
+  max-height: 100%; /* Maximum height */
+  overflow: auto; /* Enable scroll if needed */
+  flex-direction: column;
   align-items: center;
-  justify-content: center;
+  padding: 1.6rem 3rem;
+  border: 3px solid #205d88;
+  border-radius: 10px;
+  background: rgb(255, 255, 255);
+  box-shadow: 8px 8px 0 rgba(32, 93, 136, 0.2); /* 0.5 is the opacity */
+  font-family: "Arial", sans-serif;
+  color: #205d88;
 }
 
-#newTaskModal {
-  display: none;
-}
-
-.modal-content {
-  background-color: rgba(27, 91, 114, 0.9);
-  padding: 20px;
-  border: 1px solid #888;
-  width: 60%;
-  max-width: 600px; /* Defina um valor máximo para a largura do modal, ajuste conforme necessário */
-  text-align: left;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+.modal button {
+  color: inherit;
+  font-family: inherit;
+  font-size: inherit;
+  background: white;
+  padding: 0.3rem 3.4rem;
+  border: 3px solid #205d88;
+  margin-right: 2.6rem;
+  box-shadow: 0 0 0 #205d88;
+  transition: all 0.2s;
   border-radius: 10px;
 }
 
-.input-container {
-  margin-bottom: 15px;
+.modal button:last-child {
+  margin: 0;
 }
 
-.input-container label {
-  color: #fff;
-  margin-bottom: 5px;
+.modal button:hover {
+  box-shadow: 0.4rem 0.4rem 0 #205d88;
+  transform: translate(-0.4rem, -0.4rem);
 }
 
-.input-container input,
-.input-container textarea {
-  width: 100%;
-  padding: 10px;
-  box-sizing: border-box;
-  margin-bottom: 10px;
+.modal button:active {
+  box-shadow: 0 0 0 #205d88;
+  transform: translate(0, 0);
 }
 
-.input-container textarea {
-  height: 120px; /* Adjust as needed */
+.modal textarea {
+  background-color: rgba(168, 146, 124, 0.3);
+  resize: none;
+  border-color: #205d88;
+  color: #205d88;
+  border-radius: 5px;
 }
 
-.buttons-container {
+.modal #input-container {
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 1.6rem;
 }
 
-.buttons-container button {
-  width: 48%; /* Adjust as needed */
-  padding: 10px;
-  box-sizing: border-box;
-  background-color: #205d88;
-  color: #fff;
-  cursor: pointer;
-  border: none;
+#newTaskModal {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 40%; /* Add this */
+  width: 30%; /* Add this */
 }
 
-.buttons-container button:hover {
-  background-color: #164866;
-}
-
-.close {
-  color: #aaa;
-  float: right;
-  font-size: 28px;
-  font-weight: bold;
-}
-
-.close:hover,
-.close:focus {
-  color: black;
-  text-decoration: none;
-  cursor: pointer;
-}
-
-#editTaskModal {
-  display: none; /* Inicialmente escondido */
-  position: fixed; /* Fixo na janela do navegador */
-  z-index: 1; /* Fica no topo */
-  left: 0;
-  top: 0;
-  width: 100%; /* Largura total */
-  height: 100%; /* Altura total */
-  overflow: auto; /* Habilita scroll se necessário */
-  background-color: rgba(0, 0, 0, 0.4); /* Fundo preto com opacidade */
-}
-
-/* Estilo para o conteúdo da modal */
-.modal-content {
-  background-color: #205d88; /* Fundo branco com opacidade */
-  margin: 15% auto; /* 15% do topo e centralizado */
-  padding: 20px;
-  border: 1px solid #888;
-  width: 40%; /* 50% da largura */
-  height: 40%;
-  text-align: center; /* Alinha o texto ao centro */
-}
-
-/* Estilo para os botões da modal */
-.modal-content button {
-  display: inline-block; /* Alinha os botões lado a lado */
-  margin: 10px; /* Espaçamento em torno dos botões */
-}
 
 #trashIcon {
   position: fixed;
@@ -240,10 +332,10 @@ body::before {
 }
 
 #trashIcon.highlightTrash {
-  bottom: 20px;
-  left: 30px;
-  transform: scale(1.5); /* Ajuste conforme necessário para o tamanho desejado */
-  transition: transform 0.3s ease; /* Adiciona uma transição suave */
+  bottom: 10px;
+  left: 20px;
+  width: 35px;
+  height: 35px; /* Adiciona uma transição suave */
 }
 
 
@@ -281,6 +373,7 @@ aside::after {
 }
 
 #deleteWarning {
+  color: #205d88;
   display: none; /* Hidden by default */
   position: fixed; /* Stay in place */
   z-index: 1; /* Sit on top */
@@ -288,16 +381,17 @@ aside::after {
   top: 50%;
   transform: translate(-50%, -50%);
   width: auto;
-  max-width: 20%; /* Maximum width */
-  max-height: 10%; /* Maximum height */
+  max-width: 20%;
+  height: 10%; /* Maximum width */ /* Maximum height */
   overflow: auto; /* Enable scroll if needed */
   flex-direction: column;
   align-items: center;
   padding: 1.6rem 3rem;
-  border: 3px solid black;
+  border: 3px solid #205d88;
   border-radius: 5px;
   background: white;
-  box-shadow: 8px 8px 0 rgba(0, 0, 0, 0.2);
+  box-shadow: 8px 8px 0 rgba(32, 93, 136, 0.2); /* 0.5 is the opacity */
+  border-radius: 10px;
 }
 
 #deleteWarning .message {
@@ -313,14 +407,14 @@ aside::after {
 }
 
 #deleteWarning .options .btn {
-  color:inherit;
-  font-family:inherit;
+  color: inherit;
+  font-family: inherit;
   font-size: inherit;
   background: white;
   padding: 0.3rem 3.4rem;
-  border: 3px solid black;
+  border: 3px solid #205d88;
   margin-right: 2.6rem;
-  box-shadow: 0 0 0 black;
+  box-shadow: 0 0 0 #205d88;
   transition: all 0.2s;
 }
 
@@ -329,12 +423,12 @@ aside::after {
 }
 
 #deleteWarning .options .btn:hover {
-  box-shadow: 0.4rem 0.4rem 0 black;
+  box-shadow: 0.4rem 0.4rem 0 #205d88;
   transform: translate(-0.4rem, -0.4rem);
 }
 
 #deleteWarning .options .btn:active {
-  box-shadow: 0 0 0 black;
+  box-shadow: 0 0 0 #205d88;
   transform: translate(0, 0);
 }
 
@@ -361,37 +455,3 @@ aside::after {
   background-color: #ddd; /* Hover background color */
 }
 
-#taskDetailsModal {
-  display: none; /* Hidden by default */
-  position: fixed; /* Stay in place */
-  z-index: 1; /* Sit on top */
-  left: 0;
-  top: 0;
-  width: 100%; /* Full width */
-  height: 100%; /* Full height */
-  overflow: auto; /* Enable scroll if needed */
-  background-color: rgb(0,0,0); /* Fallback color */
-  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-}
-
-#taskDetailsModal .modal-content {
-  background-color: #fefefe;
-  margin: 15% auto; /* 15% from the top and centered */
-  padding: 20px;
-  border: 1px solid #888;
-  width: 80%; /* Could be more or less, depending on screen size */
-}
-
-#taskDetailsModal .modal-close {
-  color: #aaa;
-  float: right;
-  font-size: 28px;
-  font-weight: bold;
-}
-
-#taskDetailsModal .modal-close:hover,
-#taskDetailsModal .modal-close:focus {
-  color: black;
-  text-decoration: none;
-  cursor: pointer;
-}

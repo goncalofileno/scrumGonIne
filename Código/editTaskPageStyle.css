@@ -1,8 +1,9 @@
 body {
-  background-color: #f0f0f0; 
-  background-image: url('exp1.jpg'); 
-  background-repeat: no-repeat; 
+  background-color: #f0f0f0;
+  background-image: url("exp1.jpg");
+  background-repeat: no-repeat;
   background-size: cover;
+  font-family: "Arial", sans-serif;
 }
 
 body.modal-open {
@@ -35,23 +36,25 @@ body.modal-open::before {
   flex-direction: column;
   align-items: center;
   padding: 1.6rem 3rem;
-  border: 3px solid black;
-  border-radius: 5px;
-  background: white;
-  box-shadow: 8px 8px 0 rgba(0, 0, 0, 0.2);
-  font-family: 'Arial', sans-serif;
+  border: 3px solid #205d88;
+  border-radius: 10px;
+  background: rgb(255, 255, 255);
+  box-shadow: 8px 8px 0 rgba(32, 93, 136, 0.2); /* 0.5 is the opacity */
+  font-family: "Arial", sans-serif;
+  color: #205d88;
 }
 
 .modal button {
-  color:inherit;
-  font-family:inherit;
+  color: inherit;
+  font-family: inherit;
   font-size: inherit;
   background: white;
   padding: 0.3rem 3.4rem;
-  border: 3px solid black;
+  border: 3px solid #205d88;
   margin-right: 2.6rem;
-  box-shadow: 0 0 0 black;
+  box-shadow: 0 0 0 #205d88;
   transition: all 0.2s;
+  border-radius: 10px;
 }
 
 .modal button:last-child {
@@ -59,17 +62,21 @@ body.modal-open::before {
 }
 
 .modal button:hover {
-  box-shadow: 0.4rem 0.4rem 0 black;
+  box-shadow: 0.4rem 0.4rem 0 #205d88;
   transform: translate(-0.4rem, -0.4rem);
 }
 
 .modal button:active {
-  box-shadow: 0 0 0 black;
+  box-shadow: 0 0 0 #205d88;
   transform: translate(0, 0);
 }
 
 .modal textarea {
   background-color: rgba(168, 146, 124, 0.3);
+  resize: none;
+  border-color: #205d88;
+  color: #205d88;
+  border-radius: 5px;
 }
 
 .modal #modal-footer {
@@ -85,75 +92,142 @@ body.modal-open::before {
   margin-bottom: 1.6rem;
 }
 
+#editarTarefaDescricao {
+  height: 150px;
+}
+
 #input-container textarea {
   width: 100%;
-  max-width: 500px;;
+  max-width: 500px;
 }
 
 #editTaskModal {
   display: block;
 }
 
+#editTaskModal {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
 
+.input-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
 
-
+.input-container label,
+.input-container textarea {
+  width: 100%;
+  margin-bottom: 10px;
+}
 
 #confirmationModal {
-    display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    width: auto;
-    max-width: 20%; /* Maximum width */
-    max-height: 10%; /* Maximum height */
-    overflow: auto; /* Enable scroll if needed */
-    flex-direction: column;
-    align-items: center;
-    padding: 1.6rem 3rem;
-    border: 3px solid black;
-    border-radius: 5px;
-    background: white;
-    box-shadow: 8px 8px 0 rgba(0, 0, 0, 0.2);
-  }
-  
-  #confirmationModal .message {
-    font-size:1.1rem;
-    margin-bottom: 1.6rem;
-    margin-top: 0;
-  }
-  
-  #confirmationModal .options {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-  }
-  
-  #confirmationModal .options .btn {
-    color:inherit;
-    font-family:inherit;
-    font-size: inherit;
-    background: white;
-    padding: 0.3rem 3.4rem;
-    border: 3px solid black;
-    margin-right: 2.6rem;
-    box-shadow: 0 0 0 black;
-    transition: all 0.2s;
-  }
-  
-  #confirmationModal .options .btn:last-child {
-    margin: 0;
-  }
-  
-  #confirmationModal .options .btn:hover {
-    box-shadow: 0.4rem 0.4rem 0 black;
-    transform: translate(-0.4rem, -0.4rem);
-  }
-  
-  #confirmationModal .options .btn:active {
-    box-shadow: 0 0 0 black;
-    transform: translate(0, 0);
-  }
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: auto;
+  max-width: 20%; /* Maximum width */ /* Maximum height */
+  overflow: auto; /* Enable scroll if needed */
+  flex-direction: column;
+  align-items: center;
+  padding: 1.6rem 3rem;
+  border: 3px solid #205d88;
+  border-radius: 5px;
+  background: white;
+  box-shadow: 8px 8px 0 rgba(32, 93, 136, 0.2); /* 0.5 is the opacity */
+  height: 150px;
+  border-radius: 10px;
+}
 
-  
+
+#confirmationModal .message {
+  font-size: 1.1rem;
+  margin-bottom: 1.6rem;
+  margin-top: 0;
+}
+
+#confirmationModal .options {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  height: 100%;
+}
+
+#confirmationModal .options .btn {
+  color: inherit;
+  font-family: inherit;
+  font-size: inherit;
+  background: white;
+  padding: 0.3rem 3.4rem;
+  border: 3px solid #205d88;
+  margin-right: 2.6rem;
+  box-shadow: 0 0 0 #205d88;
+  transition: all 0.2s;
+}
+
+#confirmationModal .options .btn:last-child {
+  margin: 0;
+}
+
+#confirmationModal .options .btn:hover {
+  box-shadow: 0.4rem 0.4rem 0 #205d88;
+  transform: translate(-0.4rem, -0.4rem);
+}
+
+#confirmationModal .options .btn:active {
+  box-shadow: 0 0 0 #205d88;
+  transform: translate(0, 0);
+}
+
+#confirmationModal .modal-footer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+aside {
+  position: fixed; /* Makes the aside stick to the left side of the page */
+  top: 0; /* Aligns the aside with the top of the page */
+  left: 0; /* Aligns the aside with the left of the page */
+  height: 100vh; /* Makes the aside the same height as the viewport */
+  background-color: rgba(240, 240, 240, 0.2); /* Makes the background color semi-transparent */
+  padding: 20px; /* Some padding */
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2); /* Shadow for depth */
+  width: 200px; /* Adjust as needed */
+  overflow: auto; /* Adds scroll if the content overflows */
+}
+
+aside::after {
+  content: "";
+  position: absolute;
+  top: 230px; /* Ajuste conforme necessário para a posição vertical */
+  left: 0;
+  width: 100%;
+  height: 3px; /* Espessura da linha */
+  background-color: rgba(32, 93, 136, 0.5); /* Cor da linha azul com transparência */
+}
+
+#logo {
+  position: absolute; /* Change this line */
+  top: 0; /* Change this line */
+  left: 0; /* Change this line */
+  width: 170px; /* Adjust as needed */
+  height: 120px; /* Adjust as needed */
+  margin: 30px; /* Adjust as needed */
+  filter: brightness(70%);
+  z-index: 0; /* Makes the logo appear in front of other elements */
+}
+
+#userDisplay {
+  position: absolute;
+  top: 200px;
+  left: 30px;
+  color: #205d88; /* Blue */
+  font-weight: bold;
+}

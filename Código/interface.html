@@ -7,45 +7,63 @@
   <body>
     <img id="logo"
       src="Captura de ecrã 2024-01-23 231537-PhotoRoom.png-PhotoRoom.png">
+      <img id="argola1" src="unnamed.png" alt="Descrição da Imagem"draggable="false">
+  <img id="argola2" src="unnamed.png" alt="Descrição da Imagem"draggable="false">
+  <img id="argola3" src="unnamed.png" alt="Descrição da Imagem"draggable="false">
+  <img id="argola4" src="unnamed.png" alt="Descrição da Imagem"draggable="false">
+  <img id="argola5" src="unnamed.png" alt="Descrição da Imagem"draggable="false">
+  <img id="argola6" src="unnamed.png" alt="Descrição da Imagem"draggable="false">
+  <img id="argola7" src="unnamed.png" alt="Descrição da Imagem"draggable="false">
+  <img id="argola8" src="unnamed.png" alt="Descrição da Imagem"draggable="false">
+  <img id="argola9" src="unnamed.png" alt="Descrição da Imagem"draggable="false">
+  <img id="argola10" src="unnamed.png" alt="Descrição da Imagem"draggable="false">
+  <img id="argola11" src="unnamed.png" alt="Descrição da Imagem"draggable="false">
+  <img id="argola12" src="unnamed.png" alt="Descrição da Imagem"draggable="false">
 
-    <button id="logoutButton">Logout&#x21AA</button>
+  <div id="userDisplay">
+    <span id="labelUser">User: </span><span id="displayUsername"></span>
+     <button id="logoutButton">Logout&#x21AA</button>
+  </div>
+    
 
-    <h2 id="todoTitle">To do</h2>
-    <div id="todo" class="taskArea" ondrop="drop(event)"
-      ondragover="allowDrop(event)">
+  <div class="titulos"><h2>To Do</h2></div>
+  <div id="todo" class="taskArea" ondrop="drop(event)" ondragover="allowDrop(event)">
+    <div class="tasks-container">
+    </div>
+  </div>
+<div class="titulos"><h2>Doing</h2></div>
+    <div id="doing" class="taskArea" ondrop="drop(event)" ondragover="allowDrop(event)">
+
+      <div class="tasks-container"></div>
+      <!-- Tasks for the 'Doing' area go here -->
+     </div>
+    </div>
+<div class="titulos"><h2>Done</h2></div>
+    <div id="done" class="taskArea" ondrop="drop(event)" ondragover="allowDrop(event)">
       
-    </div>
-
-    <h2 id="doingTitle">Doing</h2>
-    <div id="doing" class="taskArea" ondrop="drop(event)"
-      ondragover="allowDrop(event)">
-    </div>
-
-    <h2 id="doneTitle">Done</h2>
-    <div id="done" class="taskArea" ondrop="drop(event)"
-      ondragover="allowDrop(event)">
+      <div class="tasks-container">
+        <!-- Tasks for the 'Done' area go here -->
+      </div>
     </div>
 
     <aside>
       <button id="addTaskButton">Add Task</button>
-      <div id="userDisplay">
-        <span>User: </span><span id="displayUsername"></span>
-      </div>
     </aside>
 
     <div id="newTaskModal" class="modal">
       <div class="modal-content">
+        <h1>New Task</h1>
         <div class="input-container">
-          <label for="taskTitle">Título da Tarefa:</label>
-          <input type="text" id="taskTitle" name="taskTitle" />
+          <label for="taskTitle">Task Title:</label>
+          <textarea type="text" id="taskTitle" name="taskTitle"></textarea>
         </div>
         <div class="input-container">
-          <label for="taskDescription">Descrição da Tarefa:</label>
+          <label for="taskDescription">Task Description:</label>
           <textarea id="taskDescription" name="taskDescription"></textarea>
         </div>
         <div class="buttons-container">
-          <button id="submitTaskButton">Adicionar Tarefa</button>
-          <button id="cancelTaskButton">Cancelar</button>
+          <button id="submitTaskButton">Add Task</button>
+          <button id="cancelTaskButton">Cancel</button>
         </div>
       </div>
     </div>
@@ -56,9 +74,7 @@
         <p id="taskDescriptioninfo"></p>
         <button id="modalOkButton">OK</button>
       </div>
-      <div class="modal-footer">
-        <a href="#!" class="modal-close">Close</a>
-      </div>
+      
     </div>
 
     <div class="modal" id="deleteWarning">

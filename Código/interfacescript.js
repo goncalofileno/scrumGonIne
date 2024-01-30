@@ -31,12 +31,6 @@ let modalTaskTitle = document.getElementById("taskTitleinfo");
 let modalTaskDescription = document.getElementById("taskDescriptioninfo");
 let modalOkButton = document.getElementById('modalOkButton');
 
-// Add a 'click' event listener to the close button
-document.querySelector(".modal-close").addEventListener("click", function () {
-  // Hide the modal
-  taskDetailsModal.style.display = "none";
-});
-
 trashIcon.ondragover = function (event) {
   allowDrop(event);
   trashIcon.classList.add("highlightTrash");
@@ -155,6 +149,8 @@ function displayTasks() {
         ToDoTasks.find((t) => t.identificador === task.identificador) ||
         DoingTasks.find((t) => t.identificador === task.identificador) ||
         DoneTasks.find((t) => t.identificador === task.identificador);
+
+        console.log(taskToEdit);
 
       // Store task in sessionStorage
       sessionStorage.setItem("taskToEdit", JSON.stringify(taskToEdit));
