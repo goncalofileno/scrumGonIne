@@ -1,98 +1,105 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <link rel="stylesheet" type="text/css" href="InterfaceStyle.css" />
-  </head>
 
-  <body>
-    <img id="logo"
-      src="Captura de ecrã 2024-01-23 231537-PhotoRoom.png-PhotoRoom.png">
-      <img id="argola1" src="unnamed.png" alt="Descrição da Imagem"draggable="false">
-  <img id="argola2" src="unnamed.png" alt="Descrição da Imagem"draggable="false">
-  <img id="argola3" src="unnamed.png" alt="Descrição da Imagem"draggable="false">
-  <img id="argola4" src="unnamed.png" alt="Descrição da Imagem"draggable="false">
-  <img id="argola5" src="unnamed.png" alt="Descrição da Imagem"draggable="false">
-  <img id="argola6" src="unnamed.png" alt="Descrição da Imagem"draggable="false">
-  <img id="argola7" src="unnamed.png" alt="Descrição da Imagem"draggable="false">
-  <img id="argola8" src="unnamed.png" alt="Descrição da Imagem"draggable="false">
-  <img id="argola9" src="unnamed.png" alt="Descrição da Imagem"draggable="false">
-  <img id="argola10" src="unnamed.png" alt="Descrição da Imagem"draggable="false">
-  <img id="argola11" src="unnamed.png" alt="Descrição da Imagem"draggable="false">
-  <img id="argola12" src="unnamed.png" alt="Descrição da Imagem"draggable="false">
+<head>
+  <link rel="stylesheet" type="text/css" href="InterfaceStyle.css" />
+</head>
+
+<body>
+  <img id="logo" src="Captura de ecrã 2024-01-23 231537-PhotoRoom.png-PhotoRoom.png">
+  <img id="argola1" src="unnamed.png" alt="Descrição da Imagem" draggable="false">
+  <img id="argola2" src="unnamed.png" alt="Descrição da Imagem" draggable="false">
+  <img id="argola3" src="unnamed.png" alt="Descrição da Imagem" draggable="false">
+  <img id="argola4" src="unnamed.png" alt="Descrição da Imagem" draggable="false">
+  <img id="argola5" src="unnamed.png" alt="Descrição da Imagem" draggable="false">
+  <img id="argola6" src="unnamed.png" alt="Descrição da Imagem" draggable="false">
+  <img id="argola7" src="unnamed.png" alt="Descrição da Imagem" draggable="false">
+  <img id="argola8" src="unnamed.png" alt="Descrição da Imagem" draggable="false">
+  <img id="argola9" src="unnamed.png" alt="Descrição da Imagem" draggable="false">
+  <img id="argola10" src="unnamed.png" alt="Descrição da Imagem" draggable="false">
+  <img id="argola11" src="unnamed.png" alt="Descrição da Imagem" draggable="false">
+  <img id="argola12" src="unnamed.png" alt="Descrição da Imagem" draggable="false">
 
   <div id="userDisplay">
     <span id="labelUser">User: </span><span id="displayUsername"></span>
-     <button id="logoutButton">Logout&#x21AA</button>
+    <button id="logoutButton">Logout&#x21AA</button>
   </div>
-    
 
-  <div class="titulos"><h2>To Do</h2></div>
+
+  <div class="titulos">
+    <h2>To Do</h2>
+  </div>
   <div id="todo" class="taskArea" ondrop="drop(event)" ondragover="allowDrop(event)">
     <div class="tasks-container">
     </div>
   </div>
-<div class="titulos"><h2>Doing</h2></div>
-    <div id="doing" class="taskArea" ondrop="drop(event)" ondragover="allowDrop(event)">
+  <div class="titulos">
+    <h2>Doing</h2>
+  </div>
+  <div id="doing" class="taskArea" ondrop="drop(event)" ondragover="allowDrop(event)">
 
-      <div class="tasks-container"></div>
-      <!-- Tasks for the 'Doing' area go here -->
-     </div>
+    <div class="tasks-container"></div>
+    <!-- Tasks for the 'Doing' area go here -->
+  </div>
+  </div>
+  <div class="titulos">
+    <h2>Done</h2>
+  </div>
+  <div id="done" class="taskArea" ondrop="drop(event)" ondragover="allowDrop(event)">
+
+    <div class="tasks-container">
+      <!-- Tasks for the 'Done' area go here -->
     </div>
-<div class="titulos"><h2>Done</h2></div>
-    <div id="done" class="taskArea" ondrop="drop(event)" ondragover="allowDrop(event)">
-      
-      <div class="tasks-container">
-        <!-- Tasks for the 'Done' area go here -->
+  </div>
+
+  <aside>
+    <button id="addTaskButton">Add Task</button>
+  </aside>
+
+  <div id="newTaskModal" class="modal">
+    <div class="modal-content">
+      <h1>New Task</h1>
+      <div class="input-container">
+        <label for="taskTitle">Task Title:</label>
+        <textarea type="text" id="taskTitle" name="taskTitle"></textarea>
+      </div>
+      <div class="input-container">
+        <label for="taskDescription">Task Description:</label>
+        <textarea id="taskDescription" name="taskDescription"></textarea>
+      </div>
+      <div class="buttons-container">
+        <button id="submitTaskButton">Add Task</button>
+        <button id="cancelTaskButton">Cancel</button>
       </div>
     </div>
+  </div>
 
-    <aside>
-      <button id="addTaskButton">Add Task</button>
-    </aside>
-
-    <div id="newTaskModal" class="modal">
-      <div class="modal-content">
-        <h1>New Task</h1>
-        <div class="input-container">
-          <label for="taskTitle">Task Title:</label>
-          <textarea type="text" id="taskTitle" name="taskTitle"></textarea>
-        </div>
-        <div class="input-container">
-          <label for="taskDescription">Task Description:</label>
-          <textarea id="taskDescription" name="taskDescription"></textarea>
-        </div>
-        <div class="buttons-container">
-          <button id="submitTaskButton">Add Task</button>
-          <button id="cancelTaskButton">Cancel</button>
-        </div>
-      </div>
+  <div id="taskDetailsModal" class="modal">
+    <div class="modal-content">
+      <h4 id="taskTitleinfo"></h4>
+      <p id="taskDescriptioninfo"></p>
+      <button id="modalOkButton">OK</button>
     </div>
 
-    <div id="taskDetailsModal" class="modal">
-      <div class="modal-content">
-        <h4 id="taskTitleinfo"></h4>
-        <p id="taskDescriptioninfo"></p>
-        <button id="modalOkButton">OK</button>
-      </div>
-      
+  </div>
+
+  <div class="modal" id="deleteWarning">
+    <p class="message">Do you want to delete this task?</p>
+    <div class="options">
+      <button class="btn">Yes</button>
+      <button class="btn">No</button>
     </div>
+  </div>
 
-    <div class="modal" id="deleteWarning">
-      <p class="message">Do you want to delete this task?</p>
-      <div class="options">
-        <button class="btn">Yes</button>
-        <button class="btn">No</button>
-      </div>
-    </div>
+  <!-- Popup menu -->
+  <div id="contextMenu">
+    <div id="deleteTask"> Delete Task</div>
+    <div id="editTask"> Edit Task</div>
+  </div>
 
-    <!-- Popup menu -->
-    <div id="contextMenu" style="display: none">
-      <div id="deleteTask">Delete Task</div>
-      <div id="editTask">Edit Task</div>
-    </div>
+  <img id="trashIcon" src="trash.png" alt="Trash Icon">
 
-    <img id="trashIcon" src="trash.png" alt="Trash Icon">
+  <script src="interfacescript.js"></script>
+</body>
 
-    <script src="interfacescript.js"></script>
-  </body>
 </html>

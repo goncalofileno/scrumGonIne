@@ -145,7 +145,6 @@ body.modal-open::before {
   border-radius: 10px;
 }
 
-
 #confirmationModal .message {
   font-size: 1.1rem;
   margin-bottom: 1.6rem;
@@ -196,7 +195,12 @@ aside {
   top: 0; /* Aligns the aside with the top of the page */
   left: 0; /* Aligns the aside with the left of the page */
   height: 100vh; /* Makes the aside the same height as the viewport */
-  background-color: rgba(240, 240, 240, 0.2); /* Makes the background color semi-transparent */
+  background-color: rgba(
+    240,
+    240,
+    240,
+    0.2
+  ); /* Makes the background color semi-transparent */
   padding: 20px; /* Some padding */
   box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2); /* Shadow for depth */
   width: 200px; /* Adjust as needed */
@@ -210,7 +214,12 @@ aside::after {
   left: 0;
   width: 100%;
   height: 3px; /* Espessura da linha */
-  background-color: rgba(32, 93, 136, 0.5); /* Cor da linha azul com transparência */
+  background-color: rgba(
+    32,
+    93,
+    136,
+    0.5
+  ); /* Cor da linha azul com transparência */
 }
 
 #logo {

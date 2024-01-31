@@ -5,9 +5,25 @@ body {
   align-items: flex-start;
   height: 100vh;
   margin: 0;
-  background-image: url('exp1.jpg');
+  background-image: url("exp1.jpg");
   background-repeat: no-repeat;
   background-size: cover;
+}
+
+body.modal-open {
+  position: relative;
+  overflow: hidden;
+}
+
+body.modal-open::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1;
 }
 
 body::before {
@@ -17,7 +33,7 @@ body::before {
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(206, 200, 200, 0.5); 
+  background: rgba(206, 200, 200, 0.5);
   z-index: -1;
 }
 
@@ -37,7 +53,7 @@ body::before {
   text-decoration: underline;
 }
 
-#labelUser{
+#labelUser {
   position: relative;
 }
 
@@ -52,7 +68,7 @@ body::before {
   height: 60px;
   font-size: 15px;
   font-weight: bold;
-  transition: font-size 0.3s ease; 
+  transition: font-size 0.3s ease;
 }
 
 #logoutButton:hover {
@@ -61,85 +77,85 @@ body::before {
 
 #argola1 {
   position: absolute;
-  top: 105px; 
-  left: 400px; 
+  top: 105px;
+  left: 400px;
   z-index: 9999;
   height: 30px;
 }
 #argola2 {
   position: absolute;
-  top: 105px; 
-  left: 460px; 
+  top: 105px;
+  left: 460px;
   z-index: 9999;
   height: 30px;
 }
 #argola3 {
   position: absolute;
-  top: 105px; 
-  left: 520px; 
+  top: 105px;
+  left: 520px;
   z-index: 9999;
   height: 30px;
 }
 #argola4 {
   position: absolute;
-  top: 105px; 
-  left: 580px; 
+  top: 105px;
+  left: 580px;
   z-index: 9999;
   height: 30px;
 }
 #argola5 {
   position: absolute;
-  top: 105px; 
-  left: 780px; 
+  top: 105px;
+  left: 780px;
   z-index: 9999;
   height: 30px;
 }
 #argola6 {
   position: absolute;
-  top: 105px; 
-  left: 840px; 
+  top: 105px;
+  left: 840px;
   z-index: 9999;
   height: 30px;
 }
 #argola7 {
   position: absolute;
-  top: 105px; 
-  left: 900px; 
+  top: 105px;
+  left: 900px;
   z-index: 9999;
   height: 30px;
 }
 #argola8 {
   position: absolute;
-  top: 105px; 
-  left: 960px; 
+  top: 105px;
+  left: 960px;
   z-index: 9999;
   height: 30px;
 }
 #argola9 {
   position: absolute;
-  top: 105px; 
-  left: 1160px; 
+  top: 105px;
+  left: 1160px;
   z-index: 9999;
   height: 30px;
 }
 #argola10 {
   position: absolute;
-  top: 105px; 
-  left: 1220px; 
+  top: 105px;
+  left: 1220px;
   z-index: 9999;
   height: 30px;
 }
 #argola11 {
   position: absolute;
-  top: 105px; 
-  left: 1280px; 
+  top: 105px;
+  left: 1280px;
   z-index: 9999;
   height: 30px;
 }
 #argola12 {
   position: absolute;
   top: 105px;
-  left: 1340px; 
+  left: 1340px;
   z-index: 9999;
   height: 30px;
 }
@@ -175,16 +191,15 @@ body::before {
   transform: translate(0, 0);
 }
 
-
 .titulos > h2 {
   position: relative;
   top: 40px;
-  left: 270px; 
+  left: 270px;
   color: #205d88;
   font-size: 2em;
   font-weight: bold;
 }
-  
+
 .taskArea {
   position: relative;
   width: 18%;
@@ -210,9 +225,8 @@ body::before {
 
 .taskArea .tasks-container {
   overflow-y: auto;
-  flex-grow: 1; 
-  padding: 8px; 
-  
+  flex-grow: 1;
+  padding: 8px;
 }
 
 .task {
@@ -223,18 +237,15 @@ body::before {
   box-sizing: border-box;
 }
 
-
-
 .taskArea > div {
   width: 90%;
-  background-color: #fff; 
-  border: 2px solid #205d88; 
-  margin: 12px; 
-  padding: 10px; 
-  box-sizing: border-box; 
+  background-color: #fff;
+  border: 2px solid #205d88;
+  margin: 12px;
+  padding: 10px;
+  box-sizing: border-box;
   border-radius: 10px;
 }
-
 
 .taskArea div:active {
   border-width: 4px; /* Aumenta a largura da borda da div quando clicada */
@@ -312,15 +323,44 @@ body::before {
   margin-bottom: 1.6rem;
 }
 
+#newTaskModal{
+  display: none;
+}
+
 #newTaskModal {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   height: 40%; /* Add this */
-  width: 30%; /* Add this */
+  width: 20%; /* Add this */
 }
 
+#newTaskModal .input-container {
+  display: flex;
+  flex-direction: column;
+  margin: 3% 0;
+}
+
+.modal textarea#taskDescription {
+  height: 170px; /* Adjust as needed */
+}
+
+#taskDetailsModal .modal-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+#taskDetailsModal h4.taskTitleInfo, #taskDetailsModal #modalOkButton {
+  text-align: center;
+  margin: auto;
+}
+
+#taskDescriptioninfo {
+  text-align: justify;
+}
 
 #trashIcon {
   position: fixed;
@@ -338,13 +378,17 @@ body::before {
   height: 35px; /* Adiciona uma transição suave */
 }
 
-
 aside {
   position: fixed; /* Makes the aside stick to the left side of the page */
   top: 0; /* Aligns the aside with the top of the page */
   left: 0; /* Aligns the aside with the left of the page */
   height: 100vh; /* Makes the aside the same height as the viewport */
-  background-color: rgba(240, 240, 240, 0.2); /* Makes the background color semi-transparent */
+  background-color: rgba(
+    240,
+    240,
+    240,
+    0.2
+  ); /* Makes the background color semi-transparent */
   padding: 20px; /* Some padding */
   box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2); /* Shadow for depth */
   width: 200px; /* Adjust as needed */
@@ -358,7 +402,12 @@ aside::after {
   left: 0;
   width: 100%;
   height: 3px; /* Espessura da linha */
-  background-color: rgba(32, 93, 136, 0.5); /* Cor da linha azul com transparência */
+  background-color: rgba(
+    32,
+    93,
+    136,
+    0.5
+  ); /* Cor da linha azul com transparência */
 }
 
 #logo {
@@ -395,7 +444,7 @@ aside::after {
 }
 
 #deleteWarning .message {
-  font-size:1.1rem;
+  font-size: 1.1rem;
   margin-bottom: 1.6rem;
   margin-top: 0;
 }
@@ -435,23 +484,47 @@ aside::after {
 #contextMenu {
   display: none; /* Hidden by default */
   position: fixed; /* Stay in place */
+  width:7%;
+  height: 5%;
   z-index: 1; /* Sit on top */
   background: white; /* Background color */
-  border: 3px solid black; /* Border color */
+  border: 3px solid #205d88; /* Border color */
   border-radius: 5px; /* Border radius */
-  padding: 1.6rem 3rem; /* Padding */
+  padding: 0.5rem 1.0rem;
+  
   box-shadow: 8px 8px 0 rgba(0, 0, 0, 0.2); /* Shadow */
 }
 
 #contextMenu div {
-  font-size:1.1rem;
-  margin-bottom: 1.6rem;
+  font-size: 1.1rem;
   margin-top: 0;
+  margin-bottom: 0.5rem;
   cursor: pointer;
-  color: black; /* Text color */
+  color: #205d88; /* Text color */
 }
 
 #contextMenu div:hover {
   background-color: #ddd; /* Hover background color */
+  border-radius: 5px; /* Rounded corners */
+}
+
+#deleteTask::before, #editTask::before {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  content: "";
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  margin-left: 10px; /* Space between the text and the icon */
+  filter: invert(1) grayscale(1) brightness(0.50);
+}
+
+#deleteTask::before {
+  background-image: url('/trash_context.png'); /* Path to the delete icon */
+}
+
+#editTask::before {
+  background-image: url('/edit_context.png'); /* Path to the edit icon */
 }
 

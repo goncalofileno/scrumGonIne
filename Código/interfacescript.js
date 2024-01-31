@@ -4,6 +4,7 @@ window.onload = function () {
   if (username) {
     document.getElementById("displayUsername").textContent = username; //Coloca o username no displayUsername se existir
   }
+  document.getElementById("newTaskModal").style.display = "none"; //Esconde o modal de adicionar tarefas
   displayTasks(); //Chama a função displayTasks para mostrar as tarefas
 };
 
@@ -29,7 +30,8 @@ let editTaskOption = document.getElementById("editTask");
 let taskDetailsModal = document.getElementById("taskDetailsModal");
 let modalTaskTitle = document.getElementById("taskTitleinfo");
 let modalTaskDescription = document.getElementById("taskDescriptioninfo");
-let modalOkButton = document.getElementById('modalOkButton');
+let modalOkButton = document.getElementById("modalOkButton");
+let botaoLogout = document.getElementById("logoutButton"); //Obtém o botão de logout
 
 trashIcon.ondragover = function (event) {
   allowDrop(event);
@@ -52,32 +54,36 @@ trashIcon.ondrop = function (event) {
 
   // Show the deleteWarning modal
   deleteWarning.style.display = "block";
+  document.body.classList.add('modal-open');
+
   displayTasks(); // Display the tasks
   trashIcon.src = "trash.png";
 };
-//Declaração de variáveis
-let botaoLogout = document.getElementById("logoutButton"); //Obtém o botão de logout
+
 
 //Listener para quando o botão de logout é clicado
 botaoLogout.addEventListener("click", function () {
   sessionStorage.clear(); //Limpa o sessionStorage
-  window.location.href = "loginPage.html"; //Redireciona para a página de login
+  window.location.href = "index.html"; //Redireciona para a página de login
 });
 
 addTaskButton.addEventListener("click", function () {
   // Change the display style of the newTaskModal to block
   newTaskModal.style.display = "block";
+  document.body.classList.add('modal-open');
 });
 
 cancelButtonAddTaskModal.addEventListener("click", function () {
   // Change the display style of the newTaskModal to none
   newTaskModal.style.display = "none";
+  document.body.classList.remove('modal-open');
 }); //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 window.addEventListener("click", function (event) {
   // If the event's target is the newTaskModal, change its display style to none
   if (event.target == newTaskModal) {
     newTaskModal.style.display = "none";
+    document.body.classList.remove('modal-open');
   }
 
   if (contextMenu.style.display === "block") {
@@ -85,7 +91,8 @@ window.addEventListener("click", function (event) {
   }
 
   if (event.target == taskDetailsModal) {
-    taskDetailsModal.style.display = 'none';
+    taskDetailsModal.style.display = "none";
+    document.body.classList.remove('modal-open');
   }
 });
 
@@ -130,6 +137,7 @@ function displayTasks() {
 
       // Show the modal
       taskDetailsModal.style.display = "block";
+      document.body.classList.add('modal-open');
     });
 
     // Add event listener for context menu
@@ -150,7 +158,7 @@ function displayTasks() {
         DoingTasks.find((t) => t.identificador === task.identificador) ||
         DoneTasks.find((t) => t.identificador === task.identificador);
 
-        console.log(taskToEdit);
+      console.log(taskToEdit);
 
       // Store task in sessionStorage
       sessionStorage.setItem("taskToEdit", JSON.stringify(taskToEdit));
@@ -225,6 +233,7 @@ submitTaskButton.addEventListener("click", function () {
 
   // Close the modal
   newTaskModal.style.display = "none";
+  document.body.classList.remove('modal-open');
 });
 
 function allowDrop(event) {
@@ -306,6 +315,7 @@ yesButton.addEventListener("click", function () {
 
   // Hide the deleteWarning modal
   deleteWarning.style.display = "none";
+  document.body.classList.remove('modal-open');
 });
 
 // Handle the click event on the "No" button
@@ -313,12 +323,14 @@ noButton.addEventListener("click", function () {
   // Hide the deleteWarning modal
   let deleteWarning = document.getElementById("deleteWarning");
   deleteWarning.style.display = "none";
+  document.body.classList.remove('modal-open');
 });
 
 deleteTaskOption.addEventListener("click", () => {
   // Hide context menu
   let contextMenu = document.getElementById("contextMenu");
   contextMenu.style.display = "none";
+  
 
   // Get task id from context menu
   let taskId = contextMenu.getAttribute("data-task-id");
@@ -329,6 +341,7 @@ deleteTaskOption.addEventListener("click", () => {
 
   // Show deleteWarning modal
   deleteWarning.style.display = "block";
+  document.body.classList.add('modal-open');
 });
 
 editTaskOption.addEventListener("click", () => {
@@ -340,6 +353,7 @@ editTaskOption.addEventListener("click", () => {
   window.location.href = "editTaskPage.html";
 });
 
-modalOkButton.addEventListener('click', function() {
-  taskDetailsModal.style.display = 'none';
+modalOkButton.addEventListener("click", function () {
+  taskDetailsModal.style.display = "none";
+  document.body.classList.remove('modal-open');
 });
