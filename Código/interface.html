@@ -2,6 +2,8 @@
 <html>
 
 <head>
+  <title>TaskCraft</title>
+    <link rel="icon" href="tab_logo.png" />
   <link rel="stylesheet" type="text/css" href="InterfaceStyle.css" />
 </head>
 
@@ -25,7 +27,6 @@
     <button id="logoutButton">Logout&#x21AA</button>
   </div>
 
-
   <div class="titulos">
     <h2>To Do</h2>
   </div>
@@ -33,20 +34,20 @@
     <div class="tasks-container">
     </div>
   </div>
+
   <div class="titulos">
     <h2>Doing</h2>
   </div>
   <div id="doing" class="taskArea" ondrop="drop(event)" ondragover="allowDrop(event)">
-
     <div class="tasks-container"></div>
     <!-- Tasks for the 'Doing' area go here -->
   </div>
   </div>
+
   <div class="titulos">
     <h2>Done</h2>
   </div>
   <div id="done" class="taskArea" ondrop="drop(event)" ondragover="allowDrop(event)">
-
     <div class="tasks-container">
       <!-- Tasks for the 'Done' area go here -->
     </div>
@@ -67,6 +68,15 @@
         <label for="taskDescription">Task Description:</label>
         <textarea id="taskDescription" name="taskDescription"></textarea>
       </div>
+
+      <div class="center-container">
+        <label for="editTaskPriority">Priority:</label>
+        <select id="editTaskPriority" name="priority">
+          <option value="low">Low</option>
+          <option value="medium">Medium</option>
+          <option value="high">High</option>
+        </select>
+      </div>
       <div class="buttons-container">
         <button id="submitTaskButton">Add Task</button>
         <button id="cancelTaskButton">Cancel</button>
@@ -80,7 +90,6 @@
       <p id="taskDescriptioninfo"></p>
       <button id="modalOkButton">OK</button>
     </div>
-
   </div>
 
   <div class="modal" id="deleteWarning">

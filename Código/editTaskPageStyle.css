@@ -83,6 +83,7 @@ body.modal-open::before {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  
 }
 
 .modal #input-container {
@@ -239,4 +240,50 @@ aside::after {
   left: 30px;
   color: #205d88; /* Blue */
   font-weight: bold;
+}
+
+#editTaskStatus {
+  font-size: 16px;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  color: #205d88;
+  background-color: rgba(168, 146, 124, 0.3);
+  margin-bottom: 1.2rem;
+  margin-right: 2rem;
+}
+
+#editTaskStatus:focus {
+  outline: none;
+  border-color: #205d88;
+}
+
+#editTaskStatus option {
+  padding: 10px;
+}
+
+#editTaskPriority {
+  font-size: 16px;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  color: #205d88;
+  background-color: rgba(168, 146, 124, 0.3);
+  margin-bottom: 1.2rem;
+}
+
+#editTaskPriority:focus {
+  outline: none;
+  border-color: #205d88;
+}
+
+#editTaskPriority option {
+  padding: 10px;
+}
+
+.center-container {
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+  justify-content: center
 }
