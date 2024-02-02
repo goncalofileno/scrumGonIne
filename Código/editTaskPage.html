@@ -2,10 +2,23 @@
 <html>
     <head>
         <title>TaskCraft</title>
-        <link rel="icon" href="tab_logo.png" />
+        <link rel="icon" href="resources/Logos/tab_logo.png" />
         <link rel="stylesheet" type="text/css" href="editTaskPageStyle.css">
     </head>
     <body>
+        <header>
+            <div id="dateTimeDisplay"></div>
+            <div id="userDisplay">
+                <span id="labelUser">Welcome, </span><span
+                    id="displayUsername"></span>
+                <img id="userIcon" src="resources/Avatars/avatar1.png"
+                    alt="User Icon" draggable="false">
+            </div>
+        </header>
+        <aside>
+            <img id="logo" src="resources/Logos/logo.png" alt="TaskCraft Logo"
+                draggable="false">
+        </aside>
         <div id="editTaskModal" class="modal">
             <h1>Edit Task</h1>
             <div class="input-container">

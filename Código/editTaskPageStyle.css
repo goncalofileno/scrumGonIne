@@ -1,6 +1,6 @@
 body {
   background-color: #f0f0f0;
-  background-image: url("exp1.jpg");
+  background-image: url("resources/Backgrounds/background1.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   font-family: "Arial", sans-serif;
@@ -20,6 +20,46 @@ body.modal-open::before {
   left: 0;
   background-color: rgba(0, 0, 0, 0.5);
   z-index: 1;
+}
+
+#dateTimeDisplay {
+  position: fixed; 
+  top: 1rem;
+  left: 16.5rem;
+  color: #205d88;
+  font-weight: bold;
+  font-size: 12px;
+}
+
+#userDisplay {
+  position: fixed; 
+  top: 1.5rem;
+  right: 5.8rem;
+  color: #205d88;
+  font-weight: bold;
+}
+
+#displayUsername {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: #1d2d38;
+  text-decoration: underline;
+  max-width: 80%; /* Limita a largura para evitar sobreposição */
+  display: inline-block; /* Permite que o elemento tenha uma largura máxima */
+}
+
+#labelUser {
+  position: relative;
+  top:-0.2rem;
+}
+
+#userIcon {
+  position: fixed; 
+  top: 0.5rem;
+  right: 1rem;
+  width: 5rem;
+  height: 3.2rem;
 }
 
 .modal {
@@ -196,31 +236,11 @@ aside {
   top: 0; /* Aligns the aside with the top of the page */
   left: 0; /* Aligns the aside with the left of the page */
   height: 100vh; /* Makes the aside the same height as the viewport */
-  background-color: rgba(
-    240,
-    240,
-    240,
-    0.2
-  ); /* Makes the background color semi-transparent */
+  background-color: rgba(240, 240, 240, 0.2); /* Makes the background color semi-transparent */
   padding: 20px; /* Some padding */
   box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2); /* Shadow for depth */
   width: 200px; /* Adjust as needed */
   overflow: auto; /* Adds scroll if the content overflows */
-}
-
-aside::after {
-  content: "";
-  position: absolute;
-  top: 230px; /* Ajuste conforme necessário para a posição vertical */
-  left: 0;
-  width: 100%;
-  height: 3px; /* Espessura da linha */
-  background-color: rgba(
-    32,
-    93,
-    136,
-    0.5
-  ); /* Cor da linha azul com transparência */
 }
 
 #logo {
@@ -231,15 +251,9 @@ aside::after {
   height: 120px; /* Adjust as needed */
   margin: 30px; /* Adjust as needed */
   filter: brightness(70%);
-  z-index: 0; /* Makes the logo appear in front of other elements */
-}
-
-#userDisplay {
-  position: absolute;
-  top: 200px;
-  left: 30px;
-  color: #205d88; /* Blue */
-  font-weight: bold;
+  z-index: 1; /* Makes the logo appear in front of other elements */
+  pointer-events: none; /* Desativa eventos de clique */
+  user-select: none; /* Impede que o usuário selecione a imagem */
 }
 
 #editTaskStatus {

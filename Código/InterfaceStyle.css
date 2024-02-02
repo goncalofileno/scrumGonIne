@@ -1,13 +1,25 @@
 body {
+  position: relative;
   font-family: "Arial", sans-serif;
   display: flex;
   justify-content: center;
   align-items: flex-start;
   height: 100vh;
   margin: 0;
-  background-image: url("exp1.jpg");
+  background-image: url('resources/Backgrounds/background1.jpg');
   background-repeat: no-repeat;
   background-size: cover;
+}
+
+body::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(206, 200, 200, 0.5); 
+  z-index: -1;
 }
 
 body.modal-open {
@@ -26,22 +38,20 @@ body.modal-open::before {
   z-index: 1;
 }
 
-body::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(206, 200, 200, 0.5);
-  z-index: -1;
+#dateTimeDisplay {
+  position: fixed; 
+  top: 1rem;
+  left:16.5rem;
+  color: #205d88;
+  font-weight: bold;
+  font-size: 12px;
 }
 
 #userDisplay {
-  position: absolute; /* Alterado de 'flex' para 'absolute' */
-  top: 20px;
-  right: 2%; /* Alterado de 'left' para 'right' */
-  color: #205d88; /* Blue */
+  position: fixed; 
+  top: 1.5rem;
+  right: 5.8rem;
+  color: #205d88;
   font-weight: bold;
 }
 
@@ -51,120 +61,104 @@ body::before {
   text-overflow: ellipsis;
   color: #1d2d38;
   text-decoration: underline;
+  max-width: 80%; /* Limita a largura para evitar sobreposição */
+  display: inline-block; /* Permite que o elemento tenha uma largura máxima */
 }
 
 #labelUser {
   position: relative;
+  top:-0.2rem;
+}
+
+#userIcon {
+  position: fixed; 
+  top: 0.5rem;
+  right: 1rem;
+  width: 5rem;
+  height: 3.2rem;
 }
 
 #logoutButton {
-  position: absolute;
-  top: 10px;
-  right: 20px;
-  background-color: transparent; /* No background */
-  color: #205d88; /* Blue symbol */
+  position: fixed;
+  top: 3.5rem;
+  right: 2.8rem;
+  background-color: transparent;
+  color: #205d88;
   border: none;
-  width: 60px;
-  height: 60px;
+  width: 3rem;
+  height: 3rem;
   font-size: 15px;
   font-weight: bold;
   transition: font-size 0.3s ease;
+  display: flex;
+  align-items: center;
 }
 
 #logoutButton:hover {
-  font-size: 20px; /* Aumenta o seu tamanho se passa com o rato por cima*/
+  transform: scale(1.2); /* Altere este valor para o tamanho desejado */
 }
 
+/*caracteristicas comuns das argolas*/
+#argola1, #argola2, #argola3, #argola4, #argola5, #argola6, #argola7, #argola8, #argola9, #argola10, #argola11, #argola12 {
+  position: fixed;
+  top: 6.5rem; 
+  z-index: 9999;
+  height: 2.2rem; 
+}
+/*posiçao de cada argola*/
 #argola1 {
-  position: absolute;
-  top: 105px;
-  left: 400px;
-  z-index: 9999;
-  height: 30px;
+  left: 25%; 
 }
-#argola2 {
-  position: absolute;
-  top: 105px;
-  left: 460px;
-  z-index: 9999;
-  height: 30px;
+
+#argola2 { 
+  left: 30%;  
 }
-#argola3 {
-  position: absolute;
-  top: 105px;
-  left: 520px;
-  z-index: 9999;
-  height: 30px;
+
+#argola3 { 
+  left: 35%; 
 }
-#argola4 {
-  position: absolute;
-  top: 105px;
-  left: 580px;
-  z-index: 9999;
-  height: 30px;
+
+#argola4 { 
+  left: 40%; 
 }
-#argola5 {
-  position: absolute;
-  top: 105px;
-  left: 780px;
-  z-index: 9999;
-  height: 30px;
+
+#argola5 { 
+  left: 50%; 
 }
-#argola6 {
-  position: absolute;
-  top: 105px;
-  left: 840px;
-  z-index: 9999;
-  height: 30px;
+
+#argola6 { 
+  left: 55%; 
 }
-#argola7 {
-  position: absolute;
-  top: 105px;
-  left: 900px;
-  z-index: 9999;
-  height: 30px;
+
+#argola7 { 
+  left: 60%; 
 }
-#argola8 {
-  position: absolute;
-  top: 105px;
-  left: 960px;
-  z-index: 9999;
-  height: 30px;
+
+#argola8 { 
+  left: 65%;
 }
-#argola9 {
-  position: absolute;
-  top: 105px;
-  left: 1160px;
-  z-index: 9999;
-  height: 30px;
+
+#argola9 { 
+  left: 75%; 
 }
-#argola10 {
-  position: absolute;
-  top: 105px;
-  left: 1220px;
-  z-index: 9999;
-  height: 30px;
+
+#argola10 { 
+  left: 80%;
 }
-#argola11 {
-  position: absolute;
-  top: 105px;
-  left: 1280px;
-  z-index: 9999;
-  height: 30px;
+
+#argola11 { 
+  left: 85%;
 }
+
 #argola12 {
-  position: absolute;
-  top: 105px;
-  left: 1340px;
-  z-index: 9999;
-  height: 30px;
+  left: 90%;
 }
 
 #addTaskButton {
   position: absolute;
-  top: 30%; /* Adjust this value to move the button up or down */
-  left: 10%;
-  width: 80%;
+  top: 20rem; /* Adjust this value to move the button up or down */
+  left: 1.3rem;
+  width: 12rem;
   color: inherit;
   font-family: inherit;
   font-size: inherit;
@@ -212,7 +206,7 @@ body::before {
   background-size: 1px 100%;
   background-position: 0 0;
   background-repeat: no-repeat;
-  background-color: rgba(168, 146, 124, 0.3);
+  background-color: rgba(248, 233, 219, 0.7);
   margin-top: 120px;
   margin-bottom: 10px;
   margin-right: 10px;
@@ -374,18 +368,19 @@ body::before {
 
 #trashIcon {
   position: fixed;
-  bottom: 10px;
-  left: 20px;
-  width: 30px; /* Adjust as needed */
-  height: 30px; /* Adjust as needed */
-  transition: transform 0.3s ease; /* Adicione uma transição para suavizar o aumento de tamanho */
+  bottom: 1rem;
+  left: 1rem;
+  width: 2rem;
+  height: 2rem;
+  
 }
 
 #trashIcon.highlightTrash {
-  bottom: 10px;
-  left: 20px;
-  width: 35px;
-  height: 35px; /* Adiciona uma transição suave */
+  position: fixed;
+  bottom: 1rem;
+  left: 1rem;
+  width: 2.5rem;
+  height: 2.5rem; 
 }
 
 aside {
@@ -429,6 +424,8 @@ aside::after {
   margin: 30px; /* Adjust as needed */
   filter: brightness(70%);
   z-index: 1; /* Makes the logo appear in front of other elements */
+  pointer-events: none; /* Desativa eventos de clique */
+  user-select: none; /* Impede que o usuário selecione a imagem */
 }
 
 #deleteWarning {
@@ -530,11 +527,11 @@ aside::after {
 }
 
 #deleteTask::before {
-  background-image: url('/trash_context.png'); /* Path to the delete icon */
+  background-image: url('resources/Icons/trash_context.png'); /* Path to the delete icon */
 }
 
 #editTask::before {
-  background-image: url('/edit_context.png'); /* Path to the edit icon */
+  background-image: url('resources/Icons/edit_context.png'); /* Path to the edit icon */
 }
 
 #editTaskPriority {

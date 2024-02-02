@@ -3,35 +3,40 @@
 
 <head>
   <title>TaskCraft</title>
-    <link rel="icon" href="tab_logo.png" />
+  <link rel="icon" href="resources/Logos/tab_logo.png" />
   <link rel="stylesheet" type="text/css" href="InterfaceStyle.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@2.1.0/css/boxicons.min.css">
 </head>
 
 <body>
-  <img id="logo" src="Captura de ecrã 2024-01-23 231537-PhotoRoom.png-PhotoRoom.png">
-  <img id="argola1" src="unnamed.png" alt="Descrição da Imagem" draggable="false">
-  <img id="argola2" src="unnamed.png" alt="Descrição da Imagem" draggable="false">
-  <img id="argola3" src="unnamed.png" alt="Descrição da Imagem" draggable="false">
-  <img id="argola4" src="unnamed.png" alt="Descrição da Imagem" draggable="false">
-  <img id="argola5" src="unnamed.png" alt="Descrição da Imagem" draggable="false">
-  <img id="argola6" src="unnamed.png" alt="Descrição da Imagem" draggable="false">
-  <img id="argola7" src="unnamed.png" alt="Descrição da Imagem" draggable="false">
-  <img id="argola8" src="unnamed.png" alt="Descrição da Imagem" draggable="false">
-  <img id="argola9" src="unnamed.png" alt="Descrição da Imagem" draggable="false">
-  <img id="argola10" src="unnamed.png" alt="Descrição da Imagem" draggable="false">
-  <img id="argola11" src="unnamed.png" alt="Descrição da Imagem" draggable="false">
-  <img id="argola12" src="unnamed.png" alt="Descrição da Imagem" draggable="false">
+  <header>
+    <div id="dateTimeDisplay"></div>
+    <div id="userDisplay">
+      <span id="labelUser">Welcome, </span><span id="displayUsername"></span>
+      <img id="userIcon" src="resources/Avatars/avatar1.png" alt="User Icon" draggable="false">
+      <button id="logoutButton">Logout<i class='bx bx-power-off'></i></button>
+    </div>
+  </header>
 
-  <div id="userDisplay">
-    <span id="labelUser">User: </span><span id="displayUsername"></span>
-    <button id="logoutButton">Logout&#x21AA</button>
-  </div>
+  <img id="argola1" src="resources/Elements/argola.png" alt="argola" draggable="false">
+  <img id="argola2" src="resources/Elements/argola.png" alt="argola" draggable="false">
+  <img id="argola3" src="resources/Elements/argola.png" alt="argola" draggable="false">
+  <img id="argola4" src="resources/Elements/argola.png" alt="argola" draggable="false">
+  <img id="argola5" src="resources/Elements/argola.png" alt="argola" draggable="false">
+  <img id="argola6" src="resources/Elements/argola.png" alt="argola" draggable="false">
+  <img id="argola7" src="resources/Elements/argola.png" alt="argola" draggable="false">
+  <img id="argola8" src="resources/Elements/argola.png" alt="argola" draggable="false">
+  <img id="argola9" src="resources/Elements/argola.png" alt="argola" draggable="false">
+  <img id="argola10" src="resources/Elements/argola.png" alt="argola" draggable="false">
+  <img id="argola11" src="resources/Elements/argola.png" alt="argola" draggable="false">
+  <img id="argola12" src="resources/Elements/argola.png" alt="argola" draggable="false">
 
   <div class="titulos">
     <h2>To Do</h2>
   </div>
   <div id="todo" class="taskArea" ondrop="drop(event)" ondragover="allowDrop(event)">
     <div class="tasks-container">
+      <!--Tarefas ficam por aqui-->
     </div>
   </div>
 
@@ -40,7 +45,7 @@
   </div>
   <div id="doing" class="taskArea" ondrop="drop(event)" ondragover="allowDrop(event)">
     <div class="tasks-container"></div>
-    <!-- Tasks for the 'Doing' area go here -->
+    <!--Tarefas ficam por aqui-->
   </div>
   </div>
 
@@ -49,12 +54,14 @@
   </div>
   <div id="done" class="taskArea" ondrop="drop(event)" ondragover="allowDrop(event)">
     <div class="tasks-container">
-      <!-- Tasks for the 'Done' area go here -->
+      <!--Tarefas ficam por aqui-->
     </div>
   </div>
 
   <aside>
+    <img id="logo" src="resources/Logos/logo.png">
     <button id="addTaskButton">Add Task</button>
+    <img id="trashIcon" src="resources/Icons/trash.png" alt="Trash Icon">
   </aside>
 
   <div id="newTaskModal" class="modal">
@@ -68,7 +75,6 @@
         <label for="taskDescription">Task Description:</label>
         <textarea id="taskDescription" name="taskDescription" placeholder="Insert description here" required></textarea>
       </div>
-
       <div class="center-container">
         <label for="editTaskPriority">Priority:</label>
         <select id="editTaskPriority" name="priority">
@@ -107,13 +113,10 @@
     </div>
   </div>
 
-  <!-- Popup menu -->
   <div id="contextMenu">
     <div id="deleteTask"> Delete Task</div>
     <div id="editTask"> Edit Task</div>
   </div>
-
-  <img id="trashIcon" src="trash.png" alt="Trash Icon">
 
   <script src="interfacescript.js"></script>
 </body>

@@ -1,5 +1,9 @@
 //Função chamada cada vez que a página é carregada
 window.onload = function () {
+  let username = sessionStorage.getItem('username'); // Replace this with the actual method of retrieving the username
+  if (username) {
+    document.getElementById('displayUsername').textContent = username;
+  }
   //Obtém a tarefa a ser editada da sessionStorage
   let task = JSON.parse(sessionStorage.getItem("taskToEdit"));
   //Preenche os campos do formulário com os detalhes da tarefa a editar
@@ -11,6 +15,9 @@ window.onload = function () {
   //Mostra o modal de edição e escurece o fundo
   document.getElementById("editTaskModal").style.display = "block";
   document.body.classList.add("modal-open");
+
+  displayDateTime(); // Adiciona a exibição da data e hora
+  setInterval(displayDateTime, 1000); // Atualiza a cada segundo
   //Esconde o modal de confirmação
   confirmationModal.style.display = "none";
 };
@@ -39,6 +46,9 @@ let originalSectionName = sessionStorage.getItem("sectionName");
 let ToDoTasks = JSON.parse(localStorage.getItem("ToDoTasks")) || [];
 let DoingTasks = JSON.parse(localStorage.getItem("DoingTasks")) || [];
 let DoneTasks = JSON.parse(localStorage.getItem("DoneTasks")) || [];
+
+//Obtem a div que mostra a data e hora
+let dateTimeDisplay = document.getElementById("dateTimeDisplay");
 
 //LISTENERS
 //Adiciona um listener para o botão de cancelar a edição da tarefa
@@ -120,3 +130,25 @@ confirmEditButton.addEventListener("click", function () {
   //Redireciona para interface.html
   window.location.href = "interface.html";
 });
+// Função para exibir a data e hora atuais
+function displayDateTime() {
+  let currentDate = new Date();
+
+  // Formata a data e hora como string (você pode ajustar o formato conforme necessário)
+  let options = {
+    weekday: "long",
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+    hour: "2-digit",
+    minute: "2-digit",
+    second: "2-digit",
+    timeZoneName: "short",
+  };
+  let dateTimeString = currentDate.toLocaleDateString("en-US", options);
+
+  // Atualiza o conteúdo do elemento
+  dateTimeDisplay.textContent = dateTimeString;
+}
+
+

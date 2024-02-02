@@ -6,6 +6,9 @@ window.onload = function () {
   if (username) {
     document.getElementById("displayUsername").textContent = username;
   }
+
+  displayDateTime(); // Adiciona a exibição da data e hora
+  setInterval(displayDateTime, 1000); // Atualiza a cada segundo
   //Chama a função para mostrar as tarefas
   displayTasks();
 };
@@ -60,13 +63,15 @@ let warningModal = document.getElementById("warningModal");
 //Obtem o botão de ok do warning modal
 let okButton = document.getElementById("modalWarningOkButton");
 
-
 //Obtem o titulo e descrição do modal de adicionar uma nova tarefa
 let taskTitle = document.getElementById("taskTitle").value;
 let taskDescription = document.getElementById("taskDescription").value;
 
 //Obtem o botão de logout
 let botaoLogout = document.getElementById("logoutButton");
+
+//Obtem a div que mostra a data e hora
+let dateTimeDisplay = document.getElementById("dateTimeDisplay");
 
 //Permite que uma tarefa seja largada sobre as secções
 todoSection.addEventListener("drop", drop);
@@ -79,8 +84,6 @@ window.addEventListener("click", function (event) {
   if (contextMenu.style.display === "block") {
     contextMenu.style.display = "none";
   }
-
-  
 });
 
 //Função que determina o que acontece quando o cursor está sobre trashIcon
@@ -90,7 +93,7 @@ trashIcon.ondragover = function (event) {
   //Atribui um highliht ao icone do lixo aberto
   trashIcon.classList.add("highlightTrash");
   //Muda a imagem do icone do lixo para o icone do lixo aberto
-  trashIcon.src = "trashOpen2.png";
+  trashIcon.src = "resources/Icons/trashOpen.png";
 };
 
 //Função que determina o que acontece quando o cursor sai de cima do trashIcon
@@ -98,7 +101,7 @@ trashIcon.ondragleave = function () {
   //Remove o highlight do icone do lixo aberto
   trashIcon.classList.remove("highlightTrash");
   //Muda a imagem do icone do lixo para o icone do lixo fechado
-  trashIcon.src = "trash.png";
+  trashIcon.src = "resources/Icons/trash.png";
 };
 
 //Função que determina o que acontece quando uma tarefa é largada sobre o trashIcon
@@ -118,7 +121,7 @@ trashIcon.ondrop = function (event) {
   document.body.classList.add("modal-open");
 
   //Muda a imagem do icone do lixo para o icone do lixo fechado
-  trashIcon.src = "trash.png";
+  trashIcon.src = "resources/Icons/trash.png";
 };
 
 //Listener para quando o botão de logout é clicado
@@ -385,13 +388,13 @@ function displayTasks() {
     //Define o icon da prioridade de acordo com a prioridade da tarefa
     switch (task.prioridade) {
       case "low":
-        priorityIcon.src = "./low_priority.png";
+        priorityIcon.src = "resources/Icons/low_priority.png";
         break;
       case "medium":
-        priorityIcon.src = "./medium_priority.png";
+        priorityIcon.src = "resources/Icons/medium_priority.png";
         break;
       case "high":
-        priorityIcon.src = "./high_priority.png";
+        priorityIcon.src = "resources/Icons/high_priority.png";
         break;
       default:
         break;
@@ -472,3 +475,26 @@ function displayTasks() {
     doneSection.appendChild(createTaskElement(task));
   });
 }
+
+//Função que mostra a data e hora
+function displayDateTime() {
+  let currentDate = new Date();
+
+  // Formata a data e hora como string (você pode ajustar o formato conforme necessário)
+  let options = {
+    weekday: "long",
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+    hour: "2-digit",
+    minute: "2-digit",
+    second: "2-digit",
+    timeZoneName: "short",
+  };
+  let dateTimeString = currentDate.toLocaleDateString("en-US", options);
+
+  // Atualiza o conteúdo do elemento
+  dateTimeDisplay.textContent = dateTimeString;
+}
+
+
