@@ -55,6 +55,16 @@ let modalTaskDescription = document.getElementById("taskDescriptioninfo");
 //Obtem o botão para fechar a modal de detalhes da tarefa
 let modalOkButton = document.getElementById("modalOkButton");
 
+//Obtem o warning modal
+let warningModal = document.getElementById("warningModal");
+//Obtem o botão de ok do warning modal
+let okButton = document.getElementById("modalWarningOkButton");
+
+
+//Obtem o titulo e descrição do modal de adicionar uma nova tarefa
+let taskTitle = document.getElementById("taskTitle").value;
+let taskDescription = document.getElementById("taskDescription").value;
+
 //Obtem o botão de logout
 let botaoLogout = document.getElementById("logoutButton");
 
@@ -69,6 +79,8 @@ window.addEventListener("click", function (event) {
   if (contextMenu.style.display === "block") {
     contextMenu.style.display = "none";
   }
+
+  
 });
 
 //Função que determina o que acontece quando o cursor está sobre trashIcon
@@ -155,33 +167,40 @@ submitTaskButton.addEventListener("click", function () {
   let descricao = document.getElementById("taskDescription").value;
   let priority = document.getElementById("editTaskPriority").value;
 
-  //Gera um id único para a tarefa e guarda-o na variável identificador
-  let identificador = generateUniqueID();
+  if (titulo.trim() === "" || descricao.trim() === "") {
+    //Mostra o modal de aviso
+    warningModal.style.display = "block";
+    //Escurece o fundo da página
+    document.body.classList.add("modal-open");
+  } else {
+    //Gera um id único para a tarefa e guarda-o na variável identificador
+    let identificador = generateUniqueID();
 
-  //Cria um objecto com o identificador, o titulo e a descrição da tarefa
-  let task = {
-    identificador: identificador,
-    titulo: titulo,
-    descricao: descricao,
-    prioridade: priority,
-  };
+    //Cria um objecto com o identificador, o titulo e a descrição da tarefa
+    let task = {
+      identificador: identificador,
+      titulo: titulo,
+      descricao: descricao,
+      prioridade: priority,
+    };
 
-  //Adiciona esse objecto à lista de tarefas ToDoTasks
-  ToDoTasks.push(task);
+    //Adiciona esse objecto à lista de tarefas ToDoTasks
+    ToDoTasks.push(task);
 
-  //Guarda a lista de tarefas ToDoTasks na localStorage
-  localStorage.setItem("ToDoTasks", JSON.stringify(ToDoTasks));
+    //Guarda a lista de tarefas ToDoTasks na localStorage
+    localStorage.setItem("ToDoTasks", JSON.stringify(ToDoTasks));
 
-  //Limpa os campos de input da modal de nova tarefa
-  document.getElementById("taskTitle").value = "";
-  document.getElementById("taskDescription").value = "";
+    //Limpa os campos de input da modal de nova tarefa
+    document.getElementById("taskTitle").value = "";
+    document.getElementById("taskDescription").value = "";
 
-  //Chama a função para mostrar as tarefas com a nova tarefa adicionada
-  displayTasks();
+    //Chama a função para mostrar as tarefas com a nova tarefa adicionada
+    displayTasks();
 
-  //Fecha a modal de nova tarefa e remove o escurecimento do fundo da página
-  newTaskModal.style.display = "none";
-  document.body.classList.remove("modal-open");
+    //Fecha a modal de nova tarefa e remove o escurecimento do fundo da página
+    newTaskModal.style.display = "none";
+    document.body.classList.remove("modal-open");
+  }
 });
 
 //Listener para quando o botão de "Yes" do deleteWarning modal é clicado
@@ -252,6 +271,13 @@ editTaskOption.addEventListener("click", () => {
 modalOkButton.addEventListener("click", function () {
   //Esconde o modal de detalhes da tarefa e remove o escurecimento do fundo da página
   taskDetailsModal.style.display = "none";
+  document.body.classList.remove("modal-open");
+});
+
+//Listener para quando o botão de "Ok" do modal de aviso é clicado
+okButton.addEventListener("click", function () {
+  //Esconde o modal de aviso e remove o escurecimento do fundo da página
+  warningModal.style.display = "none";
   document.body.classList.remove("modal-open");
 });
 
@@ -357,20 +383,20 @@ function displayTasks() {
     priorityIcon.classList.add("priority-icon");
 
     //Define o icon da prioridade de acordo com a prioridade da tarefa
-    switch(task.prioridade) {
-      case 'low':
-        priorityIcon.src = './low_priority.png';
+    switch (task.prioridade) {
+      case "low":
+        priorityIcon.src = "./low_priority.png";
         break;
-      case 'medium':
-        priorityIcon.src = './medium_priority.png';
+      case "medium":
+        priorityIcon.src = "./medium_priority.png";
         break;
-      case 'high':
-        priorityIcon.src = './high_priority.png';
+      case "high":
+        priorityIcon.src = "./high_priority.png";
         break;
       default:
         break;
     }
-    
+
     //Adiciona o icon da prioridade ao elemento div
     taskElement.appendChild(priorityIcon);
 
@@ -401,7 +427,6 @@ function displayTasks() {
 
       //Guarda o identificador e a prioridade da tarefa
       contextMenu.setAttribute("data-task-id", task.identificador);
-      
 
       //Variável para guardar o nome da secção onde a tarefa se encontra
       let sectionName;

@@ -62,19 +62,19 @@
       <h1>New Task</h1>
       <div class="input-container">
         <label for="taskTitle">Task Title:</label>
-        <textarea type="text" id="taskTitle" name="taskTitle"></textarea>
+        <textarea type="text" id="taskTitle" name="taskTitle" placeholder="Insert title here" required></textarea>
       </div>
       <div class="input-container">
         <label for="taskDescription">Task Description:</label>
-        <textarea id="taskDescription" name="taskDescription"></textarea>
+        <textarea id="taskDescription" name="taskDescription" placeholder="Insert description here" required></textarea>
       </div>
 
       <div class="center-container">
         <label for="editTaskPriority">Priority:</label>
         <select id="editTaskPriority" name="priority">
-          <option value="low">Low</option>
-          <option value="medium">Medium</option>
-          <option value="high">High</option>
+          <option value="low">🟢 Low</option>
+          <option value="medium">🟡 Medium</option>
+          <option value="high">🔴 High</option>
         </select>
       </div>
       <div class="buttons-container">
@@ -89,6 +89,13 @@
       <h4 id="taskTitleinfo"></h4>
       <p id="taskDescriptioninfo"></p>
       <button id="modalOkButton">OK</button>
+    </div>
+  </div>
+
+  <div id="warningModal" class="modal">
+    <div class="modal-content">
+      <p id="warningMessage">All fields must be filled</p>
+      <button id="modalWarningOkButton">OK</button>
     </div>
   </div>
 

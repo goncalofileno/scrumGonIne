@@ -6,6 +6,7 @@ document
     //Armazena o username na sessionStorage
     let user = document.getElementById("username").value;
     sessionStorage.setItem("username", user);
+    
     //Redireciona para a página de interface
     window.location.href = "interface.html";
   });
