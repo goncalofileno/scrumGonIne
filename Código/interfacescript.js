@@ -173,8 +173,6 @@ submitTaskButton.addEventListener("click", function () {
   if (titulo.trim() === "" || descricao.trim() === "") {
     //Mostra o modal de aviso
     warningModal.style.display = "block";
-    //Escurece o fundo da página
-    document.body.classList.add("modal-open");
   } else {
     //Gera um id único para a tarefa e guarda-o na variável identificador
     let identificador = generateUniqueID();
@@ -281,7 +279,6 @@ modalOkButton.addEventListener("click", function () {
 okButton.addEventListener("click", function () {
   //Esconde o modal de aviso e remove o escurecimento do fundo da página
   warningModal.style.display = "none";
-  document.body.classList.remove("modal-open");
 });
 
 //Função que permite que um elemento seja largado sobre outro elemento, prevenindo o comportamento padrão do browser
