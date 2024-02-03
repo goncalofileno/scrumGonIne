@@ -36,10 +36,10 @@ let doneSection = document.getElementById("done");
 let deleteWarning = document.getElementById("deleteWarning");
 //Obtem os 2 botões do avisos de delete
 let yesButton = document.querySelector(
-  "#deleteWarning .options .btn:first-child"
+  "#deleteWarning .options .btn:last-child"
 );
 let noButton = document.querySelector(
-  "#deleteWarning .options .btn:last-child"
+  "#deleteWarning .options .btn:first-child"
 );
 
 //Obtem o popup menu que aparece com o click direito
@@ -173,6 +173,8 @@ submitTaskButton.addEventListener("click", function () {
   if (titulo.trim() === "" || descricao.trim() === "") {
     //Mostra o modal de aviso
     warningModal.style.display = "block";
+    //Adiciona o escurecimento do fundo da página
+    document.getElementById("modalOverlay2").style.display = "block";
   } else {
     //Gera um id único para a tarefa e guarda-o na variável identificador
     let identificador = generateUniqueID();
@@ -279,6 +281,8 @@ modalOkButton.addEventListener("click", function () {
 okButton.addEventListener("click", function () {
   //Esconde o modal de aviso e remove o escurecimento do fundo da página
   warningModal.style.display = "none";
+  //Remove o escurecimento do fundo da página
+  document.getElementById("modalOverlay2").style.display = "none";
 });
 
 //Função que permite que um elemento seja largado sobre outro elemento, prevenindo o comportamento padrão do browser
@@ -371,8 +375,12 @@ function displayTasks() {
     //Cria um elemento div para a tarefa
     let taskElement = document.createElement("div");
     taskElement.classList.add("task-element");
-    //Atribui o titulo para o texto do elemento div
-    taskElement.textContent = task.titulo;
+
+    //Cria um elemento div para o titulo da tarefa para que o mesmo possa ser estilizado
+    let titleContainer = document.createElement("div");
+    titleContainer.classList.add("title");
+    titleContainer.textContent = task.titulo;
+    taskElement.appendChild(titleContainer);
     //Atribui o id ao elemento div pelo identificador da tarefa
     taskElement.id = task.identificador;
     //Define que o elemento div é arrastável
@@ -493,5 +501,3 @@ function displayDateTime() {
   // Atualiza o conteúdo do elemento
   dateTimeDisplay.textContent = dateTimeString;
 }
-
-
