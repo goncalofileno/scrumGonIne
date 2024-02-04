@@ -1,11 +1,11 @@
 //Listener para quando todas as acções de quando a página carrega
 window.onload = function () {
   //Obtém o username da sessionStorage
-  let username = sessionStorage.getItem("username");
-  //Se o username existir, mostra o username na página
-  if (username) {
-    document.getElementById("displayUsername").textContent = username;
-  }
+  const username = localStorage.getItem("username");
+  //Vai buscar o elemento que mostra o username
+  let labelUsername = document.getElementById("displayUsername");
+  //Coloca o username no elemento
+  labelUsername.textContent = username;
 
   displayDateTime(); // Adiciona a exibição da data e hora
   setInterval(displayDateTime, 1000); // Atualiza a cada segundo
@@ -14,64 +14,60 @@ window.onload = function () {
 };
 
 //Obtem os trash icon
-let trashIcon = document.getElementById("trashIcon");
+const trashIcon = document.getElementById("trashIcon");
 //Obtem o botão Add Task
-let addTaskButton = document.getElementById("addTaskButton");
+const addTaskButton = document.getElementById("addTaskButton");
 //Obtem a modal para adicionar uma nova tarefa
-let newTaskModal = document.getElementById("newTaskModal");
+const newTaskModal = document.getElementById("newTaskModal");
 //Obtem o botao para cancelar a adição de uma nova tarefa
-let cancelButtonAddTaskModal = document.getElementById("cancelTaskButton");
+const cancelButtonAddTaskModal = document.getElementById("cancelTaskButton");
 
 //Cria as 3 listas de objectos para as tarefas
-let ToDoTasks = JSON.parse(localStorage.getItem("ToDoTasks")) || [];
-let DoingTasks = JSON.parse(localStorage.getItem("DoingTasks")) || [];
-let DoneTasks = JSON.parse(localStorage.getItem("DoneTasks")) || [];
+const ToDoTasks = JSON.parse(localStorage.getItem("ToDoTasks")) || [];
+const DoingTasks = JSON.parse(localStorage.getItem("DoingTasks")) || [];
+const DoneTasks = JSON.parse(localStorage.getItem("DoneTasks")) || [];
 
 //Obtem as 3 secções para as tarefas serem colocadas
-let todoSection = document.getElementById("todo");
-let doingSection = document.getElementById("doing");
-let doneSection = document.getElementById("done");
+const todoSection = document.getElementById("todo");
+const doingSection = document.getElementById("doing");
+const doneSection = document.getElementById("done");
 
 //Obtem o modal de aviso de delete
-let deleteWarning = document.getElementById("deleteWarning");
+const deleteWarning = document.getElementById("deleteWarning");
 //Obtem os 2 botões do avisos de delete
-let yesButton = document.querySelector(
-  "#deleteWarning .options .btn:last-child"
-);
-let noButton = document.querySelector(
-  "#deleteWarning .options .btn:first-child"
-);
+const yesButton = document.getElementById("yesButtonDelete");
+const noButton = document.getElementById("noButtonDelete");
 
 //Obtem o popup menu que aparece com o click direito
-let contextMenu = document.getElementById("contextMenu");
-//Obtem a opcao de delete do popup menu
-let deleteTaskOption = document.getElementById("deleteTask");
+const contextMenu = document.getElementById("contextMenu");
+//Obtem a opcao de deconste do popup menu
+const deleteTaskOption = document.getElementById("deleteTask");
 //Obtem a opcao de editar do popup menu
-let editTaskOption = document.getElementById("editTask");
+const editTaskOption = document.getElementById("editTask");
 
 //Obtem a modal que mostra os detalhes da tarefa
-let taskDetailsModal = document.getElementById("taskDetailsModal");
+const taskDetailsModal = document.getElementById("taskDetailsModal");
 //Obtem o label para o titulo da tarefa
-let modalTaskTitle = document.getElementById("taskTitleinfo");
+const modalTaskTitle = document.getElementById("taskTitleinfo");
 //Obtem o label para a descrição da tarefa
-let modalTaskDescription = document.getElementById("taskDescriptioninfo");
+const modalTaskDescription = document.getElementById("taskDescriptioninfo");
 //Obtem o botão para fechar a modal de detalhes da tarefa
-let modalOkButton = document.getElementById("modalOkButton");
+const modalOkButton = document.getElementById("modalOkButton");
 
 //Obtem o warning modal
-let warningModal = document.getElementById("warningModal");
+const warningModal = document.getElementById("warningModal");
 //Obtem o botão de ok do warning modal
-let okButton = document.getElementById("modalWarningOkButton");
+const okButton = document.getElementById("modalWarningOkButton");
 
 //Obtem o titulo e descrição do modal de adicionar uma nova tarefa
-let taskTitle = document.getElementById("taskTitle").value;
-let taskDescription = document.getElementById("taskDescription").value;
+const taskTitle = document.getElementById("taskTitle").value;
+const taskDescription = document.getElementById("taskDescription").value;
 
 //Obtem o botão de logout
-let botaoLogout = document.getElementById("logoutButton");
+const botaoLogout = document.getElementById("logoutButton");
 
 //Obtem a div que mostra a data e hora
-let dateTimeDisplay = document.getElementById("dateTimeDisplay");
+const dateTimeDisplay = document.getElementById("dateTimeDisplay");
 
 //Permite que uma tarefa seja largada sobre as secções
 todoSection.addEventListener("drop", drop);
@@ -84,6 +80,7 @@ window.addEventListener("click", function (event) {
   if (contextMenu.style.display === "block") {
     contextMenu.style.display = "none";
   }
+
 });
 
 //Função que determina o que acontece quando o cursor está sobre trashIcon
@@ -110,7 +107,7 @@ trashIcon.ondrop = function (event) {
   event.preventDefault();
 
   //Obtem o id da tarefa que foi largada sobre o trashIcon
-  let taskId = event.dataTransfer.getData("text/plain");
+  const taskId = event.dataTransfer.getData("text/plain");
 
   //Guarda o id da tarefa no atributo data-task-id do deleteWarning modal
   deleteWarning.setAttribute("data-task-id", taskId);
@@ -126,8 +123,6 @@ trashIcon.ondrop = function (event) {
 
 //Listener para quando o botão de logout é clicado
 botaoLogout.addEventListener("click", function () {
-  //Limpa a sessionStorage
-  sessionStorage.clear();
   //Redireciona para a página de login
   window.location.href = "index.html";
 });
@@ -166,21 +161,21 @@ doneSection.addEventListener("dragover", function (event) {
 //Listener para quando o botão de adicionar uma nova tarefa é clicado
 submitTaskButton.addEventListener("click", function () {
   // Vai buscar os valores dos inputs do titulo, descrição e prioridade da tarefa e guarda-os nas variáveis titulo, descricao e priority
-  let titulo = document.getElementById("taskTitle").value;
-  let descricao = document.getElementById("taskDescription").value;
-  let priority = document.getElementById("editTaskPriority").value;
+  const titulo = document.getElementById("taskTitle").value;
+  const descricao = document.getElementById("taskDescription").value;
+  const priority = document.getElementById("editTaskPriority").value;
 
-  if (titulo.trim() === "" || descricao.trim() === "") {
+  if (titulo === "" || descricao === "") {
     //Mostra o modal de aviso
     warningModal.style.display = "block";
     //Adiciona o escurecimento do fundo da página
     document.getElementById("modalOverlay2").style.display = "block";
   } else {
     //Gera um id único para a tarefa e guarda-o na variável identificador
-    let identificador = generateUniqueID();
+    const identificador = generateUniqueID();
 
     //Cria um objecto com o identificador, o titulo e a descrição da tarefa
-    let task = {
+    const task = {
       identificador: identificador,
       titulo: titulo,
       descricao: descricao,
@@ -192,10 +187,6 @@ submitTaskButton.addEventListener("click", function () {
 
     //Guarda a lista de tarefas ToDoTasks na localStorage
     localStorage.setItem("ToDoTasks", JSON.stringify(ToDoTasks));
-
-    //Limpa os campos de input da modal de nova tarefa
-    document.getElementById("taskTitle").value = "";
-    document.getElementById("taskDescription").value = "";
 
     //Chama a função para mostrar as tarefas com a nova tarefa adicionada
     displayTasks();
@@ -209,7 +200,7 @@ submitTaskButton.addEventListener("click", function () {
 //Listener para quando o botão de "Yes" do deleteWarning modal é clicado
 yesButton.addEventListener("click", function () {
   //Obtem o identificador da tarefa que foi guardado no atributo data-task-id do deleteWarning modal
-  let taskId = deleteWarning.getAttribute("data-task-id");
+  const taskId = deleteWarning.getAttribute("data-task-id");
 
   //Percorre as 3 listas de tarefas para encontrar o index da tarefa que foi largada e guarda a taskList onde a tarefa se encontra
   let taskIndex = ToDoTasks.findIndex((task) => task.identificador == taskId);
@@ -251,7 +242,7 @@ deleteTaskOption.addEventListener("click", () => {
   contextMenu.style.display = "none";
 
   //Obtem o identificador da tarefa que foi guardado no atributo data-task-id do popup menu
-  let taskId = contextMenu.getAttribute("data-task-id");
+  const taskId = contextMenu.getAttribute("data-task-id");
 
   //Guarda o identificador da tarefa no atributo data-task-id do deleteWarning modal
   deleteWarning.setAttribute("data-task-id", taskId);
@@ -296,18 +287,13 @@ function drop(event) {
   event.preventDefault();
 
   //Obtem o identificador da tarefa que foi largada sobre o elemento e guarda-o na variável taskId
-  let taskId = event.dataTransfer.getData("text/plain");
+  const taskId = event.dataTransfer.getData("text/plain");
 
   //Obtem o elemento div da tarefa através do identificador da tarefa
-  let taskElement = document.getElementById(taskId);
+  const taskElement = document.getElementById(taskId);
 
   //Obtem a secção onde a tarefa foi largada
   let targetSection = event.target;
-
-  //Se a secção onde a tarefa foi largada não for a secção das tarefas, vai buscar a secção das tarefas mais próxima
-  if (!targetSection.classList.contains("taskArea")) {
-    targetSection = targetSection.closest(".taskArea");
-  }
 
   //Se a taskElement e a targetSection existirem
   if (taskElement && targetSection) {
@@ -328,7 +314,7 @@ function drop(event) {
     }
 
     //Remove a tarefa da lista onde se encontrava
-    let task = taskList.splice(taskIndex, 1)[0]; // Remove the task from its current list
+    const task = taskList.splice(taskIndex, 1)[0];
 
     //Através da secção onde a tarefa foi largada, adiciona a tarefa à lista correspondente
     if (targetSection.id === "todo") {
@@ -373,11 +359,11 @@ function displayTasks() {
   //Função que cria um elemento para uma tarefa na secção correspondente
   function createTaskElement(task) {
     //Cria um elemento div para a tarefa
-    let taskElement = document.createElement("div");
+    const taskElement = document.createElement("div");
     taskElement.classList.add("task-element");
 
     //Cria um elemento div para o titulo da tarefa para que o mesmo possa ser estilizado
-    let titleContainer = document.createElement("div");
+    const titleContainer = document.createElement("div");
     titleContainer.classList.add("title");
     titleContainer.textContent = task.titulo;
     taskElement.appendChild(titleContainer);
@@ -387,7 +373,7 @@ function displayTasks() {
     taskElement.draggable = true;
 
     //Cria um elemento img para o icon da prioridade
-    let priorityIcon = document.createElement("img");
+    const priorityIcon = document.createElement("img");
     priorityIcon.classList.add("priority-icon");
 
     //Define o icon da prioridade de acordo com a prioridade da tarefa
@@ -411,6 +397,12 @@ function displayTasks() {
     //Define que a informação do elemento arrastável é o id da tarefa
     taskElement.addEventListener("dragstart", function (event) {
       event.dataTransfer.setData("text/plain", event.target.id);
+      trashIcon.classList.add("show");
+    });
+
+    //Define que o icon do lixo é escondido quando o elemento arrastável é largado
+    taskElement.addEventListener("dragend", function (e) {
+      trashIcon.classList.remove("show");
     });
 
     //Adiciona um listener para quando o elemento div é clicado duas vezes
@@ -440,7 +432,7 @@ function displayTasks() {
       let sectionName;
 
       //Verifica onde se encontra a tarefa através do identificador da tarefa e guarda-a na variável taskToEdit
-      let taskToEdit =
+      const taskToEdit =
         ToDoTasks.find((t) => t.identificador === task.identificador) ||
         DoingTasks.find((t) => t.identificador === task.identificador) ||
         DoneTasks.find((t) => t.identificador === task.identificador);
@@ -483,10 +475,10 @@ function displayTasks() {
 
 //Função que mostra a data e hora
 function displayDateTime() {
-  let currentDate = new Date();
+  const currentDate = new Date();
 
-  // Formata a data e hora como string (você pode ajustar o formato conforme necessário)
-  let options = {
+  //Formata a data e hora
+  const options = {
     weekday: "long",
     year: "numeric",
     month: "long",
@@ -496,7 +488,7 @@ function displayDateTime() {
     second: "2-digit",
     timeZoneName: "short",
   };
-  let dateTimeString = currentDate.toLocaleDateString("en-US", options);
+  const dateTimeString = currentDate.toLocaleDateString("en-US", options);
 
   // Atualiza o conteúdo do elemento
   dateTimeDisplay.textContent = dateTimeString;

@@ -2,8 +2,9 @@
 document.getElementById("loginForm").addEventListener("submit", function (event) {
     event.preventDefault();
     //Armazena o username na sessionStorage
-    let user = document.getElementById("username").value;
-    sessionStorage.setItem("username", user);
+    const user = document.getElementById("username").value;
+    //Armazena o username na localStorage
+    localStorage.setItem("username", user);
     //Redireciona para a página de interface
     window.location.href = "interface.html";
   });
