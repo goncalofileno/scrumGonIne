@@ -1,6 +1,6 @@
 //Função chamada cada vez que a página é carregada
 window.onload = function () {
-  const username = localStorage.getItem("username"); // Replace this with the actual method of retrieving the username
+  const username = localStorage.getItem("username"); //Obtém o nome de utilizador da localStorage
 
   document.getElementById("displayUsername").textContent = username;
 
@@ -137,7 +137,7 @@ confirmEditButton.addEventListener("click", function () {
 function displayDateTime() {
   const currentDate = new Date();
 
-  // Formata a data e hora como string (você pode ajustar o formato conforme necessário)
+  // Formata a data e hora como string
   const options = {
     weekday: "long",
     year: "numeric",
